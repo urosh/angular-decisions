@@ -1,0 +1,9 @@
+{
+  "name": "decisions",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.2",
+    "jsplumb": "~1.7.5",
+    "angular": "~1.4.1"
+  }
+}
