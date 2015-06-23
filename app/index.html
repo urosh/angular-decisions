@@ -9,6 +9,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -28,8 +29,7 @@
 
 
     
-    <div id="main">
-        <!-- demo -->
+    <!-- <div id="main">
         <div class="demo flowchart-demo" id="flowchart-demo">
             <div class="window" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
             <div class="window" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
@@ -37,14 +37,51 @@
             <div class="window" id="flowchartWindow4"><strong>4</strong><br/><br/></div>
             
         </div>
-        <!-- /demo -->
+    </div> -->
+    <div class="top-menu-fixed">
+
     </div>
-    <button id="but">Click me</button>
-    <button>Eureka!</button>
-    <!-- build:js(.) scripts/vendor.js -->
+
+    
+    <div class="content">
+        <div class="svg-container">
+            <div class="row">
+                <div class="columns small-9 small-centered logo">
+                  <object type="image/svg+xml" width="100%" data="images/tree.svg">
+      
+                </object>
+          
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 columns top-menu">
+                top menu
+            </div>
+        </div>
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <div class="row">
+                    <div class="small-12 columns left-menu">Menu</div>
+                    <div class="small-12 columns left-messages">Messages</div>
+                </div>
+            </div>
+            <div class="small-12 medium-8 columns right-tree">
+                Here is out tree
+            </div>
+
+        </div>
+        <button id="but">Click me</button>
+        <button>Eureka!</button>
+        <!-- build:js(.) scripts/vendor.js -->
+
+    </div>
     <!-- bower:js -->
     <script src="bower_components/jsplumb/dist/js/dom.jsPlumb-1.7.5.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -59,7 +96,7 @@
     </script>
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
-        <script src="scripts/main.js"></script>
+        <!-- <script src="scripts/main.js"></script> -->
         <!-- endbuild -->
 </body>
 </html>

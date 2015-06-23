@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0" y="0" width="525" height="392" viewBox="0 0 525 392" xml:space="preserve" enable-background="new 0 0 525 392">
+  <style type="text/css">
+    
+	.st0{fill:none;stroke:#333333;stroke-width:5;stroke-miterlimit:10;}
+	.st1{fill:#660000;}
+	.st2{fill:none;stroke:#333333;stroke-width:6;stroke-miterlimit:10;}
+
+  </style>
+  <line class="st2" x1="183" y1="272" x2="323" y2="272"/>
+  <line class="st2" x1="265" y1="112" x2="405" y2="112"/>
+  <line class="st2" x1="316" y1="272" x2="401" y2="272"/>
+  <line class="st2" x1="397" y1="196" x2="482" y2="196"/>
+  <line class="st0" x1="182.3" y1="191.2" x2="182.4" y2="270.5"/>
+  <line class="st2" x1="186.3" y1="31.2" x2="263.4" y2="108.2"/>
+  <line class="st2" x1="105.3" y1="112.2" x2="182.4" y2="189.2"/>
+  <line class="st2" x1="329.3" y1="277.2" x2="406.4" y2="354.2"/>
+  <line class="st2" x1="406.3" y1="112.2" x2="483.4" y2="189.2"/>
+  <line class="st2" x1="183.3" y1="271.2" x2="260.4" y2="348.2"/>
+  <line class="st2" x1="104.9" y1="112.7" x2="26.8" y2="188.7"/>
+  <line class="st2" x1="182.9" y1="271.7" x2="104.8" y2="347.7"/>
+  <line class="st2" x1="400.9" y1="195.7" x2="322.8" y2="271.7"/>
+  <line class="st2" x1="490" y1="32.3" x2="400.8" y2="111.7"/>
+  <line class="st2" x1="182.6" y1="35.4" x2="105.1" y2="112"/>
+  <circle class="st1" cx="186.3" cy="31.2" r="11.7"/>
+  <circle class="st1" cx="102.3" cy="112.2" r="11.7"/>
+  <circle class="st1" cx="182.3" cy="191.2" r="11.7"/>
+  <circle class="st1" cx="323.3" cy="272.2" r="11.7"/>
+  <circle class="st1" cx="182.3" cy="272.2" r="11.7"/>
+  <circle class="st1" cx="260.3" cy="348.2" r="11.7"/>
+  <circle class="st1" cx="26.3" cy="189.2" r="11.7"/>
+  <circle class="st1" cx="104.3" cy="348.2" r="11.7"/>
+  <circle class="st1" cx="263.3" cy="112.2" r="11.7"/>
+  <circle class="st1" cx="401.3" cy="196.2" r="11.7"/>
+  <circle class="st1" cx="492.3" cy="196.2" r="11.7"/>
+  <circle class="st1" cx="401.3" cy="113.2" r="11.7"/>
+  <circle class="st1" cx="401.3" cy="272.2" r="11.7"/>
+  <circle class="st1" cx="492.3" cy="31.2" r="11.7"/>
+  <circle class="st1" cx="406.3" cy="354.2" r="11.7"/>
+</svg>
