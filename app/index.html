@@ -22,7 +22,7 @@
     <!-- endbuild -->
 
   </head>
-  <body>
+  <body ng-app="starcDecisions">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -42,37 +42,10 @@
 
     </div>
 
-    
-    <div class="content">
-        <div class="svg-container">
-            <div class="row">
-                <div class="columns small-9 small-centered logo">
-                  <object type="image/svg+xml" width="100%" data="images/tree.svg">
-      
-                </object>
-          
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 columns top-menu">
-                top menu
-            </div>
-        </div>
-        <div class="row">
-            <div class="small-12 medium-4 columns">
-                <div class="row">
-                    <div class="small-12 columns left-menu">Menu</div>
-                    <div class="small-12 columns left-messages">Messages</div>
-                </div>
-            </div>
-            <div class="small-12 medium-8 columns right-tree">
-                Here is out tree
-            </div>
-
-        </div>
-        <button id="but">Click me</button>
-        <button>Eureka!</button>
+    <div ui-view="content" class="content">
+        <!--  -->
+        <!-- <button id="but">Click me</button>
+        <button>Eureka!</button> -->
         <!-- build:js(.) scripts/vendor.js -->
 
     </div>
@@ -82,6 +55,7 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -97,6 +71,7 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <!-- <script src="scripts/main.js"></script> -->
+        <script src="scripts/app.js"></script>
         <!-- endbuild -->
 </body>
 </html>
