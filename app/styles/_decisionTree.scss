@@ -51,5 +51,10 @@
 
 	}
 
+	._jsPlumb_endpoint, .endpointTargetLabel, .endpointSourceLabel {
+    //z-index: 21;
+    cursor: pointer;
+	}
+
 	
 }

@@ -1,5 +1,6 @@
 <div class="decision-tree" id="tree-content">
-	<div ng-repeat="node in vm.nodes" class="node" id="{{node.id}}" ng-style="node.style">
+	<button ng-click="buttonClicked()">Click me</button>
+	<div ng-repeat="node in nodes" class="node" id="{{node.id}}" ng-style="node.style">
 		<div class="text-containter">
 			<strong>label label, more lable, and some tags, and some more tags, just to test</strong>
 		</div>
