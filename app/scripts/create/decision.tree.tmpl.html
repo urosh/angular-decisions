@@ -1,3 +1,8 @@
-<div class="decision-tree">
-	<div ng-repeat="node in vm.nodes" class="node" ng-style="node.style"><strong>label label, more lable, and some tags, and some more tags, just to test</strong><br/><br/></div> 
+<div class="decision-tree" id="tree-content">
+	<div ng-repeat="node in vm.nodes" class="node" id="{{node.id}}" ng-style="node.style">
+		<div class="text-containter">
+			<strong>label label, more lable, and some tags, and some more tags, just to test</strong>
+		</div>
+		
+	</div> 
 </div>

@@ -6,11 +6,12 @@
   height: 700px;
   /* for IE10+ touch devices */
   touch-action:none;
-	
-	div{
-		border: solid 1px red;
+	.text-containter{
+		width: 100%;
+		height: 100%;
+		background: $grey6;
+		overflow: hidden;
 	}
-
 	div.node{
 		border: 2px solid $orange7;
     /* box-shadow: 2px 2px 19px #aaa;
@@ -21,8 +22,8 @@
     border-radius: 0.5em;
     opacity: 0.8;
     filter: alpha(opacity=80);
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     //line-height: 60px;
     cursor: pointer;
     text-align: center;
