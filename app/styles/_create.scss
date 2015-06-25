@@ -1,0 +1,41 @@
+.create{
+	margin-top: 20px;
+	@import "decisionTree"; 
+	.mdi{
+		margin-right: 10px;
+		font-size: 34px;
+	}
+	.row{
+		padding: 0;
+	}
+	.columns{
+		margin: 0;
+	}
+	md-card{
+		margin: 0;
+		padding: 0;
+		background: $grey1;
+
+	}
+	.left-menu{
+		margin-bottom: 10px;
+		padding: 0 5px;
+		md-card{
+			height: 350px;
+		}
+	}
+	
+	.left-messages{
+		padding: 0 5px;
+		md-card{
+			height: 250px;
+		}
+	}
+
+	.right-tree{
+		padding: 0 5px;
+		md-card{
+			min-height: 750px;
+		}
+	}
+}

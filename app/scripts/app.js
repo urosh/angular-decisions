@@ -2,7 +2,8 @@
 	"use strict";
 	angular.module('starcDecisions', [
 			'ui.router',
-			'ngMaterial'
+			'ngMaterial',
+			'buildDecisions'
 		]);
 
 	angular.module('starcDecisions')
@@ -28,34 +29,31 @@
 				
 				
 			})
-			.state('login', {
-				url: '/login',
+			.state('explore', {
+				url: '/explore',
 				views: {
-					'topbar@': {
-						templateUrl: 'scripts/home/topbar.tmpl.html',
-					},
-			
+					
 					'content@': {
-						controller: 'LoginCtrl as vm',
-						templateUrl: 'scripts/authentication/login.tmpl.html',
+						//controller: 'LoginCtrl as vm',
+						templateUrl: 'scripts/explore/explore.tmpl.html',
 					}
 				}
 				
         
 			})
-			.state('register', {
-				url: '/register',
+			.state('create', {
+				url: '/create',
 				views: {
-					'topbar@': {
-						templateUrl: 'scripts/home/topbar.tmpl.html',
-					},
-			
+					
 					'content@': {
-						controller: 'RegisterCtrl as vm',
-						templateUrl: 'scripts/authentication/register.tmpl.html',
+						//controller: 'LoginCtrl as vm',
+						templateUrl: 'scripts/create/create.tmpl.html',
 					}
 				}
-			});
+				
+        
+			})
+			
 	}
 		
 	  
