@@ -1,0 +1,38 @@
+<md-dialog class="new-document-form" padding aria-label="Create new document">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Create new document</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="close" ng-click="answer('not applicable')">
+        <i class="mdi mdi-close dialog-close"  ></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <form novalidate name="documentForm">
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Document title</label>
+          <input required name="title" ng-model="doc.title">
+          <div ng-messages="documentForm.title.$error">
+            <div ng-message="required">This is required.</div>
+          </div>
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Tags</label>
+          <input ng-model="document.tags">
+        </md-input-container>
+      
+      </div>
+      
+      <md-input-container flex>
+        <label>Short description</label>
+        <textarea ng-model="doc.text" columns="2" ></textarea>
+      </md-input-container>
+      <md-button class="md-raised md-primary" ng-click="submitForm();">Submit</md-button>
+    </form>
+
+  </md-content>
+</md-dialog>

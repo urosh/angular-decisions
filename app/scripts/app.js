@@ -3,7 +3,8 @@
 	angular.module('starcDecisions', [
 			'ui.router',
 			'ngMaterial',
-			'app.buildDecisions'
+			'app.buildDecisions',
+			'ngMessages'
 		]);
 
 	angular.module('starcDecisions')

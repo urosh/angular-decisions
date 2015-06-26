@@ -116,8 +116,6 @@
 	          	anchor: 'TopCenter', uuid: 'node1TopCenter'
 	        	});
 
-	        	console.log(element);
-	        	console.log();
 	        	instance.draggable(element[0].querySelectorAll(".node"), { grid: [20, 20] });
 	        	//console.log('ok we are intializing');
 
