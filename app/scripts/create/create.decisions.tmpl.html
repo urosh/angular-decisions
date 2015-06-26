@@ -47,18 +47,38 @@
           <md-card class="padding message-card">
             <md-card-content >
               <p>System messages</p>
+
             </md-card-content>
           </md-card>
+          
         </div>
       </div>
     </div>
   
     <div class="small-12 medium-9 columns right-tree">
+
       <md-card class="padding message-card">
-        <md-card-content >
-           <starc-decision-tree></starc-decision-tree>
+        <md-card-content  >
+           <!-- <starc-decision-tree></starc-decision-tree> -->
+           <md-tabs md-selected="true" md-stretch-tabs style="height: 300px !important; " md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
+              <md-tab id="tab1">
+        <md-tab-label>Item One</md-tab-label>
+        <md-tab-body>
+          View for Item #1 <br/>
+          data.selectedIndex = 0;
+        </md-tab-body>
+      </md-tab>
+              <md-tab id="tab3" style="height: 200px">
+        <md-tab-label>Item Three</md-tab-label>
+        <md-tab-body style="height: 200px">
+          View for Item #3 <br/>
+          data.selectedIndex = 2;
+        </md-tab-body>
+      </md-tab>
+
+            </md-tabs>
         </md-card-content>
-      </md-card>
+      </md-card> 
       
 
     </div>
