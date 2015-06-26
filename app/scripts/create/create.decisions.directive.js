@@ -2,11 +2,11 @@
 	"use strict";
 
 	angular
-		.module('buildDecisions')
+		.module('app.buildDecisions')
 	  .directive('createDecisions', directive);
 	  
 	/* @ngInject */
-	function directive () {
+	function directive (communicationChannel) {
 	  // Usage:
 	  //
 	  // Creates:
@@ -25,8 +25,47 @@
 	  }
 	}
 	/* @ngInject */
-	function Controller () {
-	
+	function Controller (communicationChannel) {
+		var vm = this;
+		vm.startNewDocument = startNewDocument;
+		vm.addNewNode = addNewNode;
+		vm.removeNode = removeNode;
+		vm.deleteDocument = deleteDocument;
+		vm.editNode = editNode;
+		vm.previewNode = previewNode;
+
+
+		function startNewDocument() {
+
+		};
+
+		function addNewNode() {
+			communicationChannel.addNode();
+		};
+
+		function removeNode() {
+
+		};
+
+		function deleteDocument() {
+
+		};
+
+		function editNode() {
+
+		};
+
+		function previewNode() {
+
+		};
+
+		function editConnection() {
+
+		};
+
+		function previewConnection() {
+
+		}
 	}
 	
 })();

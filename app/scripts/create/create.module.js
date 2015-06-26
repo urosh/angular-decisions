@@ -1,14 +1,14 @@
 (function(){
 	"use strict";
 
-	angular.module('buildDecisions', []);
+	angular.module('app.buildDecisions', []);
 
 	angular
-		.module('buildDecisions')
+		.module('app.buildDecisions')
 	  .directive('starcDecisionTree', decisionTreeDirective);
 	  
 	/* @ngInject */
-	function decisionTreeDirective ($timeout) {
+	function decisionTreeDirective ($timeout, communicationChannel) {
 	  // Usage:
 	  //
 	  // Creates:
@@ -34,6 +34,10 @@
 				}, 50)
 				
 			}
+			communicationChannel.onNodeAdded(scope, function() {
+				console.log('ok node is added');
+			});
+
 			scope.nodes = [
 				{'node' : 'first', 'style': {top: '40px', left: '220px'}, 'id' : 'node1'},
 				{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},

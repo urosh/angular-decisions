@@ -3,7 +3,7 @@
 	angular.module('starcDecisions', [
 			'ui.router',
 			'ngMaterial',
-			'buildDecisions'
+			'app.buildDecisions'
 		]);
 
 	angular.module('starcDecisions')
