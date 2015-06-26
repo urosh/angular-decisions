@@ -47,7 +47,7 @@
 					
 					'content@': {
 						//controller: 'LoginCtrl as vm',
-						templateUrl: 'scripts/create/create.tmpl.html',
+						template: '<create-decisions></create-decisions>',
 					}
 				}
 				

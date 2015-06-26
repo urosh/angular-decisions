@@ -23,6 +23,14 @@
 		md-card{
 			height: 350px;
 		}
+		.tree-menu-item{
+			//color: $navy2;
+			&:hover{
+				color: darken($navy2, 10%);	
+				cursor: pointer;
+			}
+
+		}
 	}
 	
 	.left-messages{
