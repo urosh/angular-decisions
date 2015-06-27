@@ -25,7 +25,7 @@
 	  }
 	}
 	/* @ngInject */
-	function Controller (communicationChannel, $mdDialog) {
+	function Controller (communicationChannel, $mdDialog, decisionFactory) {
 		var vm = this;
 		vm.startNewDocument = startNewDocument;
 		vm.addNewNode = addNewNode;
@@ -44,7 +44,7 @@
 		  	console.log($scope.documentForm.$valid);
 		  	if($scope.documentForm.$valid) {
 		  		console.log($scope.document)
-		  		$mdDialog.hide($scope.documentForm);
+		  		$mdDialog.hide($scope.document);
 		  	}
 
 		  }
@@ -60,8 +60,8 @@
 	      targetEvent: ev,
 	    })
 	    .then(function(newDocument) {
-	    	console.log(newDocument.document);
-	      console.log('ok now we can save the document');
+	    	console.log('ok now we can save the document');
+	      decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
 	      //$scope.alert = 'You said the information was "' + answer + '".';
 	    }, function() {
 	      //$scope.alert = 'You cancelled the dialog.';
