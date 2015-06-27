@@ -59,9 +59,17 @@
 
       <md-card class="padding message-card">
         <md-card-content  >
-           <!-- <starc-decision-tree></starc-decision-tree> -->
-           <md-tabs md-selected="true" md-stretch-tabs style="height: 300px !important; " md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
-              <md-tab id="tab1">
+          <!-- <starc-decision-tree></starc-decision-tree> -->
+          <md-tabs ng-if="vm.documents.length" md-selected="true" md-stretch-tabs style="height: 300px !important; " md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
+            <!-- <md-tab ng-repeat="tab in vm.documents">
+              <md-tab-label>{{tab.title}}</md-tab-label>
+              <md-tab-body>
+                {{vm.tags}}
+              </md-tab-body>
+            </md-tab> -->
+            <md-tab  ng-repeat="tb in vm.documents" label="Ajme"></md-tab>
+          </md-tabs>
+             <!--  <md-tab id="tab1">
         <md-tab-label>Item One</md-tab-label>
         <md-tab-body>
           View for Item #1 <br/>
@@ -74,9 +82,9 @@
           View for Item #3 <br/>
           data.selectedIndex = 2;
         </md-tab-body>
-      </md-tab>
+      </md-tab> -->
 
-            </md-tabs>
+            
         </md-card-content>
       </md-card> 
       

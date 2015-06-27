@@ -16,7 +16,7 @@
 	  function newDocument(title, tags, description) {
 	  	var doc = new Decision(title, tags, description);
 	  	service.documents.push(doc);
-	  	console.log(doc);
+	  	return doc;
 	  }
 
 	  

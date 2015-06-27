@@ -33,6 +33,8 @@
 		vm.deleteDocument = deleteDocument;
 		vm.editNode = editNode;
 		vm.previewNode = previewNode;
+		vm.documents = [];
+		vm.tabShow = false;
 
 		function DialogController($scope, $mdDialog) {
 		  $scope.answer = function(answer) {
@@ -60,8 +62,8 @@
 	      targetEvent: ev,
 	    })
 	    .then(function(newDocument) {
-	    	console.log('ok now we can save the document');
-	      decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
+	    	
+	    	vm.documents.push(decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text));
 	      //$scope.alert = 'You said the information was "' + answer + '".';
 	    }, function() {
 	      //$scope.alert = 'You cancelled the dialog.';
