@@ -13,7 +13,7 @@
       <div layout layout-sm="column">
         <md-input-container flex>
           <label>Document title</label>
-          <input required name="title" ng-model="doc.title">
+          <input required name="title" ng-model="document.title">
           <div ng-messages="documentForm.title.$error">
             <div ng-message="required">This is required.</div>
           </div>
@@ -29,9 +29,9 @@
       
       <md-input-container flex>
         <label>Short description</label>
-        <textarea ng-model="doc.text" columns="1" ></textarea>
+        <textarea ng-model="document.text" columns="1" ></textarea>
       </md-input-container>
-      <md-button class="md-raised md-primary" ng-click="submitForm();">Submit</md-button>
+      <md-button class="md-raised md-primary" ng-click="addNewDocument();">Submit</md-button>
     </form>
 
   </md-content>

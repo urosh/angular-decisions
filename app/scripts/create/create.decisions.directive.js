@@ -39,9 +39,14 @@
 		    $mdDialog.hide(answer);
 		  };
 
-		  $scope.submitForm = function() {
+		  $scope.addNewDocument = function() {
+
 		  	console.log($scope.documentForm.$valid);
-		  	
+		  	if($scope.documentForm.$valid) {
+		  		console.log($scope.document)
+		  		$mdDialog.hide($scope.documentForm);
+		  	}
+
 		  }
 
 
@@ -54,8 +59,9 @@
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
 	    })
-	    .then(function(answer) {
-	      console.log('ok we are good now');
+	    .then(function(newDocument) {
+	    	console.log(newDocument.document);
+	      console.log('ok now we can save the document');
 	      //$scope.alert = 'You said the information was "' + answer + '".';
 	    }, function() {
 	      //$scope.alert = 'You cancelled the dialog.';

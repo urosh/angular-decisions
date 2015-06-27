@@ -4,9 +4,7 @@
 	//border: solid 1px red;
 }
 
-md-tabs{
-	min-height: 400px;
-}
+
 
 .create{
 	margin-top: 20px;
@@ -52,6 +50,9 @@ md-tabs{
 
 	.right-tree{
 		padding: 0 5px;
+		md-tabs{
+			min-height: 600px;
+		}
 		md-card{
 			min-height: 750px;
 		}
