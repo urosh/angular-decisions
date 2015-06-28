@@ -52,6 +52,9 @@
 		padding: 0 5px;
 		md-tabs{
 			min-height: 600px;
+			md-tabs-wrapper{
+				background: white;
+			}
 		}
 		md-card{
 			min-height: 750px;

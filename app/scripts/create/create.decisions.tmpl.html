@@ -59,31 +59,16 @@
 
       <md-card class="padding message-card">
         <md-card-content  >
-          <!-- <starc-decision-tree></starc-decision-tree> -->
-          <md-tabs ng-if="vm.documents.length" md-selected="true" md-stretch-tabs style="height: 300px !important; " md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
-            <!-- <md-tab ng-repeat="tab in vm.documents">
-              <md-tab-label>{{tab.title}}</md-tab-label>
+          <md-tabs  ng-if="vm.documents.length" md-selected="true" md-stretch-tabs  md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
+            
+            <md-tab  ng-repeat="tb in vm.documents" >
+              <md-tab-label>{{tb.title}}</md-tab-label>
               <md-tab-body>
-                {{vm.tags}}
+                <starc-decision-tree></starc-decision-tree>
               </md-tab-body>
-            </md-tab> -->
-            <md-tab  ng-repeat="tb in vm.documents" label="Ajme"></md-tab>
+            </md-tab>
           </md-tabs>
-             <!--  <md-tab id="tab1">
-        <md-tab-label>Item One</md-tab-label>
-        <md-tab-body>
-          View for Item #1 <br/>
-          data.selectedIndex = 0;
-        </md-tab-body>
-      </md-tab>
-              <md-tab id="tab3" style="height: 200px">
-        <md-tab-label>Item Three</md-tab-label>
-        <md-tab-body style="height: 200px">
-          View for Item #3 <br/>
-          data.selectedIndex = 2;
-        </md-tab-body>
-      </md-tab> -->
-
+             
             
         </md-card-content>
       </md-card> 
