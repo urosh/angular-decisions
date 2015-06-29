@@ -19,21 +19,22 @@
 	    controllerAs: 'vm',
 	    link: link,
 	    scope: {
+	    	
 	    },
 	    templateUrl: 'scripts/create/decision.tree.tmpl.html'
 	  };
 	  return directive;
 	  function link(scope, element, attrs) {
 	  	var instance;
+	  	
 	  	scope.buttonClicked = function buttonClicked() {
-				console.log('button is clicked');
 				scope.nodes.push({'node' : 'fourth', 'style': {top: '220px', left: '320px'}, 'id' : 'node4'});
 				instance.repaintEverything();
 				$timeout(function(){
 					instance.draggable(element[0].querySelectorAll(".node"), { grid: [20, 20] });
 				}, 50)
 				
-			}
+			};
 			communicationChannel.onNodeAdded(scope, function() {
 				console.log('ok node is added');
 			});
@@ -43,17 +44,20 @@
 				{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},
 				{'node' : 'second', 'style': {top: '120px', left: '420px'}, 'id' : 'node3'}
 			]
+			
 	  	jsPlumb.ready(function () {
-	  		console.log('ok our jsPlumb is ready');
+	  		//console.log('ok our jsPlumb is ready');
+
 	  		instance = jsPlumb.getInstance({
         // default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
+
         // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
         // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
         ConnectionOverlays: [
             [ "Arrow", { location: 1 } ],
           ],
-        	Container: "tree-content"
+        	//Container: "doc1"
     		});
 	  		// this is the paint style for the connecting lines..
 		    var connectorPaintStyle = {
@@ -138,7 +142,7 @@
 			{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},
 			{'node' : 'second', 'style': {top: '120px', left: '420px'}, 'id' : 'node3'}
 		]
-		console.log('ok we are in a controller');
+		//console.log('ok we are in a controller');
 
 
 	}

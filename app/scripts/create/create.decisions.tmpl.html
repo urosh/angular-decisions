@@ -57,20 +57,14 @@
   
     <div class="small-12 medium-9 columns right-tree">
 
-      <md-card class="padding message-card">
-        <md-card-content  >
-          <md-tabs  ng-if="vm.documents.length" md-selected="true" md-stretch-tabs  md-dynamic-height  md-center-tabs="false" md-border-bottom md-autoselect>
-            
-            <md-tab  ng-repeat="tb in vm.documents" >
-              <md-tab-label>{{tb.title}}</md-tab-label>
-              <md-tab-body>
-                <starc-decision-tree></starc-decision-tree>
-              </md-tab-body>
-            </md-tab>
-          </md-tabs>
-             
-            
-        </md-card-content>
+      <md-card class="padding message-card" >
+        <!-- <md-card-content  > -->
+        <md-toolbar ng-show="vm.currentDocument">
+          <div class="md-toolbar-tools">
+            {{vm.currentDocument.title}}
+          </div>
+        </md-toolbar>
+        <starc-decision-tree></starc-decision-tree>
       </md-card> 
       
 

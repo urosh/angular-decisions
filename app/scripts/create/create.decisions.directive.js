@@ -22,10 +22,13 @@
 	  };
 	  return directive;
 	  function link(scope, element, attrs) {
+	  	
+
+
 	  }
 	}
 	/* @ngInject */
-	function Controller (communicationChannel, $mdDialog, decisionFactory) {
+	function Controller ($scope, communicationChannel, $mdDialog, decisionFactory) {
 		var vm = this;
 		vm.startNewDocument = startNewDocument;
 		vm.addNewNode = addNewNode;
@@ -33,8 +36,13 @@
 		vm.deleteDocument = deleteDocument;
 		vm.editNode = editNode;
 		vm.previewNode = previewNode;
-		vm.documents = [];
-		vm.tabShow = false;
+		
+		
+
+		vm.selectTab = function(i) {
+			console.log('here?');
+		}
+		
 
 		function DialogController($scope, $mdDialog) {
 		  $scope.answer = function(answer) {
@@ -42,17 +50,15 @@
 		  };
 
 		  $scope.addNewDocument = function() {
-
-		  	console.log($scope.documentForm.$valid);
 		  	if($scope.documentForm.$valid) {
-		  		console.log($scope.document)
 		  		$mdDialog.hide($scope.document);
 		  	}
-
 		  }
 
-
 		}
+
+		
+
 		function startNewDocument(ev) {
 			// open modal window for creating a document
 			$mdDialog.show({
@@ -62,9 +68,11 @@
 	      targetEvent: ev,
 	    })
 	    .then(function(newDocument) {
+	    	$scope.selectedIndex = 0;
+				
+	    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
 	    	
-	    	vm.documents.push(decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text));
-	      //$scope.alert = 'You said the information was "' + answer + '".';
+	    	//$scope.alert = 'You said the information was "' + answer + '".';
 	    }, function() {
 	      //$scope.alert = 'You cancelled the dialog.';
 	    });
