@@ -8,6 +8,8 @@
 	function factory() {
 	  var service = {
 	    newDocument: newDocument,
+	    addNode: addNode,
+	    removeNode: removeNode,
 			documents: []  
 	  };
 	  
@@ -17,6 +19,14 @@
 	  	var doc = new Decision(title, tags, description);
 	  	service.documents.push(doc);
 	  	return doc;
+	  }
+
+	  function addNode() {
+	  	console.log('adding node in factory');
+	  }
+
+	  function removeNode() {
+	  	console.log('removing node from factory');
 	  }
 
 	  

@@ -59,12 +59,12 @@
 
       <md-card class="padding message-card" >
         <!-- <md-card-content  > -->
-        <md-toolbar ng-show="vm.currentDocument">
+        <md-toolbar ng-if="vm.currentDocument">
           <div class="md-toolbar-tools">
             {{vm.currentDocument.title}}
           </div>
         </md-toolbar>
-        <starc-decision-tree></starc-decision-tree>
+        <starc-decision-tree ng-if="vm.currentDocument"></starc-decision-tree>
       </md-card> 
       
 

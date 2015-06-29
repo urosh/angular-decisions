@@ -8,7 +8,7 @@
 	  .directive('starcDecisionTree', decisionTreeDirective);
 	  
 	/* @ngInject */
-	function decisionTreeDirective ($timeout, communicationChannel) {
+	function decisionTreeDirective ($timeout, communicationChannel, decisionFactory) {
 	  // Usage:
 	  //
 	  // Creates:
@@ -26,24 +26,18 @@
 	  return directive;
 	  function link(scope, element, attrs) {
 	  	var instance;
-	  	
-	  	scope.buttonClicked = function buttonClicked() {
-				scope.nodes.push({'node' : 'fourth', 'style': {top: '220px', left: '320px'}, 'id' : 'node4'});
-				instance.repaintEverything();
-				$timeout(function(){
-					instance.draggable(element[0].querySelectorAll(".node"), { grid: [20, 20] });
-				}, 50)
-				
-			};
-			communicationChannel.onNodeAdded(scope, function() {
-				console.log('ok node is added');
-			});
+	  	scope.nodes = [];
 
-			scope.nodes = [
+	  	
+	  	
+			
+			
+
+			/*scope.nodes = [
 				{'node' : 'first', 'style': {top: '40px', left: '220px'}, 'id' : 'node1'},
 				{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},
 				{'node' : 'second', 'style': {top: '120px', left: '420px'}, 'id' : 'node3'}
-			]
+			]*/
 			
 	  	jsPlumb.ready(function () {
 	  		//console.log('ok our jsPlumb is ready');
@@ -105,7 +99,31 @@
 		            isTarget: true
 		            
 		        };
-    
+    		communicationChannel.onNodeAdded(scope, function() {
+					decisionFactory.addNode();
+
+					console.log('ok node is added');
+					var n = "node4";
+					scope.nodes.push({'node' : 'fourth', 'style': {top: '20px', left: '20px'}, 'id' : n});
+					$timeout(function(){
+						instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
+		          	anchor: 'BottomCenter', uuid: 'node1BottomCenter'
+		        });
+		        instance.addEndpoint(element[0].querySelector("#" + n) , targetEndpoint, {
+		          	anchor: 'TopCenter', uuid: 'node1TopCenter'
+		        });
+
+						instance.draggable(element[0].querySelectorAll(".node"), { 
+							grid: [20, 20], 
+							stop: function(event) {
+					  		console.log(event.pos[0]);
+					  		console.log(event.pos[1]);
+					  	} 
+						});
+					}, 50);
+
+				});
+    		
         $timeout(function(){
         	instance.repaintEverything();
 	        var look = element.children('#node1');
@@ -113,12 +131,7 @@
 	    			// make all the window divs draggable
 	    			//console.log(instance);
 	    			
-	    			instance.addEndpoint(element[0].querySelector("#node1") , sourceEndpoint, {
-	          	anchor: 'BottomCenter', uuid: 'node1BottomCenter'
-	        	});
-	        	instance.addEndpoint(element[0].querySelector("#node1") , targetEndpoint, {
-	          	anchor: 'TopCenter', uuid: 'node1TopCenter'
-	        	});
+	    			
 
 	        	instance.draggable(element[0].querySelectorAll(".node"), { grid: [20, 20] });
 	        	//console.log('ok we are intializing');
@@ -135,13 +148,14 @@
 	  }
 	}
 	/* @ngInject */
-	function DecisionTreeController () {
-		var vm = this;
+	function DecisionTreeController (decisionFactory) {
+
+		/*var vm = this;
 		vm.nodes = [
 			{'node' : 'first', 'style': {top: '40px', left: '220px'}, 'id' : 'node1'},
 			{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},
 			{'node' : 'second', 'style': {top: '120px', left: '420px'}, 'id' : 'node3'}
-		]
+		]*/
 		//console.log('ok we are in a controller');
 
 
