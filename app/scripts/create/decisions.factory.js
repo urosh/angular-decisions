@@ -15,14 +15,19 @@
 	  
 	  return service;
 	  ////////////////
+
+	  var doc;
+
 	  function newDocument(title, tags, description) {
-	  	var doc = new Decision(title, tags, description);
+	  	doc = new Decision(title, tags, description);
 	  	service.documents.push(doc);
 	  	return doc;
 	  }
 
-	  function addNode() {
-	  	console.log('adding node in factory');
+	  function addNode(node) {
+	  	var newNode = new Node(node.title, node.tags, node.text);
+	  	doc.addNode(newNode);
+	  	console.log(doc);
 	  }
 
 	  function removeNode() {
@@ -41,9 +46,17 @@
 		this.description = description;
 	}
 
-	function Node() {
+	Decision.prototype.addNode = function(node) {
+		this.nodes.push(node);
+
+	}
+
+	function Node(title, tags, description) {
 		//var this;
 		//return this;
+		this.title = title;
+		this.tags = tags;
+		this.description = description;
 	}
 
 	function Connection() {

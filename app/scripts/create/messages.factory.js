@@ -22,13 +22,13 @@
       onNodeAdded: onNodeAdded,
     }
 
-    function addNode() {
-      $rootScope.$broadcast(_ADD_NODE_);
+    function addNode(item) {
+      $rootScope.$broadcast(_ADD_NODE_, {node: item});
     }
 
     function onNodeAdded($scope, handler) {
-      $scope.$on(_ADD_NODE_, function(event) {
-        handler();
+      $scope.$on(_ADD_NODE_, function(event, args) {
+        handler(args.node);
       });
     }
 

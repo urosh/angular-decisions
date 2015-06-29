@@ -45,8 +45,8 @@
 		
 
 		function DialogController($scope, $mdDialog) {
-		  $scope.answer = function(answer) {
-		    $mdDialog.hide(answer);
+		  $scope.answer = function() {
+		    $mdDialog.hide();
 		  };
 
 		  $scope.addNewDocument = function() {
@@ -55,6 +55,19 @@
 		  	}
 		  }
 
+		}
+
+		function NewNodeController($scope, $mdDialog) {
+			$scope.close = function() {
+				$mdDialog.hide();
+			}
+
+			$scope.addNewNode = function() {
+				if($scope.documentForm.$valid) {
+					$mdDialog.hide($scope.document);
+					
+				}
+			}
 		}
 
 		
@@ -68,18 +81,28 @@
 	      targetEvent: ev,
 	    })
 	    .then(function(newDocument) {
-	    	$scope.selectedIndex = 0;
-				
-	    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
-	    	
-	    	//$scope.alert = 'You said the information was "' + answer + '".';
-	    }, function() {
-	      //$scope.alert = 'You cancelled the dialog.';
+	    	if(newDocument !== undefined) {
+		    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
+	    	}
 	    });
 		};
 
-		function addNewNode() {
-			communicationChannel.addNode();
+		function addNewNode(ev) {
+			// open modal window for creating a document
+			if(vm.currentDocument) {
+				$mdDialog.show({
+		      controller: NewNodeController,
+		      templateUrl: 'scripts/create/newNode.dialog.tmpl.html',
+		      parent: angular.element(document.body),
+		      targetEvent: ev,
+		    })
+		    .then(function(newDocument) {
+		    	communicationChannel.addNode(newDocument);
+		    });
+
+			}
+
+			
 		};
 
 		function removeNode() {

@@ -99,12 +99,15 @@
 		            isTarget: true
 		            
 		        };
-    		communicationChannel.onNodeAdded(scope, function() {
-					decisionFactory.addNode();
+		    var i = 0;
+
+    		communicationChannel.onNodeAdded(scope, function(node) {
+					decisionFactory.addNode(node);
 
 					console.log('ok node is added');
-					var n = "node4";
-					scope.nodes.push({'node' : 'fourth', 'style': {top: '20px', left: '20px'}, 'id' : n});
+					i++;
+					var n = "node" + i;
+					scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : n});
 					$timeout(function(){
 						instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
 		          	anchor: 'BottomCenter', uuid: 'node1BottomCenter'
@@ -123,7 +126,7 @@
 					}, 50);
 
 				});
-    		
+
         $timeout(function(){
         	instance.repaintEverything();
 	        var look = element.children('#node1');
