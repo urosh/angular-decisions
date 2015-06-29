@@ -100,6 +100,13 @@
 		            
 		        };
 		    var i = 0;
+		    communicationChannel.onAddDocument(scope, function() {
+		    	console.log('new document');
+		    	scope.nodes = [];
+		    	instance.detachEveryConnection();
+		    	instance.deleteEveryEndpoint();
+		    });
+
 
     		communicationChannel.onNodeAdded(scope, function(node) {
 					decisionFactory.addNode(node);

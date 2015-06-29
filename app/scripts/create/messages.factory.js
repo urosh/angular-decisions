@@ -18,9 +18,21 @@
 
 
     return {
+      addDocument: addDocument,
+      onAddDocument: onAddDocument,
       addNode: addNode,
       onNodeAdded: onNodeAdded,
     }
+    function addDocument() {
+      $rootScope.$broadcast(_ADD_DOCUMENT_);
+    }
+
+    function onAddDocument($scope, handler) {
+      $scope.$on(_ADD_DOCUMENT_, function(event) {
+        handler();
+      });
+    }
+
 
     function addNode(item) {
       $rootScope.$broadcast(_ADD_NODE_, {node: item});

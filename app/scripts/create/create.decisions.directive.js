@@ -83,6 +83,7 @@
 	    .then(function(newDocument) {
 	    	if(newDocument !== undefined) {
 		    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
+	    		communicationChannel.addDocument();
 	    	}
 	    });
 		};
