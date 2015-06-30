@@ -28,132 +28,126 @@
 	  	var instance;
 	  	scope.nodes = [];
 
-	  	
-	  	
 			
-			
+			// this is the paint style for the connecting lines..
+		  var connectorPaintStyle = {
+        lineWidth: 2,
+        strokeStyle: "#61B7CF",
+        joinstyle: "round",
+        outlineColor: "#61B7CF",
+        outlineWidth: 0
+		  },
+		  
+		  // .. and this is the hover style.
+      connectorHoverStyle = {
+        lineWidth: 2,
+        strokeStyle: "#216477",
+        outlineWidth: 0,
+        outlineColor: "#216477"
+      },
 
-			/*scope.nodes = [
-				{'node' : 'first', 'style': {top: '40px', left: '220px'}, 'id' : 'node1'},
-				{'node' : 'second', 'style': {top: '20px', left: '120px'}, 'id' : 'node2'},
-				{'node' : 'second', 'style': {top: '120px', left: '420px'}, 'id' : 'node3'}
-			]*/
-			
+      endpointHoverStyle = {
+        fillStyle: "#216477",
+        strokeStyle: "#216477"
+      },
+  		// the definition of source endpoints (the small blue ones)
+      sourceEndpoint = {
+        endpoint: "Dot",
+        paintStyle: {
+            strokeStyle: "#eb974e",
+            fillStyle: "#eb974e",
+            radius: 5,
+            lineWidth: 2
+        },
+        isSource: true,
+        connector: [ "Flowchart", { stub: [40, 60], gap: 5, cornerRadius: 5, alwaysRespectStubs: true } ],
+        connectorStyle: connectorPaintStyle,
+        hoverPaintStyle: endpointHoverStyle,
+        connectorHoverStyle: connectorHoverStyle,
+        dragOptions: {
+        	dragAllowedWhenFull : true
+        },
+        maxConnections:-1,
+      },
+  		// the definition of target endpoints (will appear when the user drags a connection)
+      targetEndpoint = {
+	      endpoint: "Dot",
+	      paintStyle: { fillStyle: "#049372", radius: 5 },
+	      hoverPaintStyle: endpointHoverStyle,
+	      maxConnections: -1,
+	      dropOptions: { hoverClass: "hover", activeClass: "active" },
+	      isTarget: true,
+      };
+
+			scope.nodeClicked = function(id) {
+  			/*if(id !== 'node1'){
+	  			instance.connect({
+					  source:"node1", 
+					  target:id,
+					  anchors:["BottomCenter", "TopCenter" ],
+					  endpointStyle: targetEndpoint,
+					  connector: [ "Flowchart", { stub: [40, 60], gap: 0, cornerRadius: 5 , alwaysRespectStubs: true} ],
+					  connectorStyle: connectorPaintStyle,
+	          connectorHoverStyle: connectorHoverStyle
+					});
+					instance.repaintEverything();
+  			}
+
+  			*/
+	  	}
+
+	  	communicationChannel.onAddDocument(scope, function() {
+	    	scope.nodes = [];
+	    	instance.detachEveryConnection();
+	    	instance.deleteEveryEndpoint();
+	    });
+	  	var i = 0;
+
+  		communicationChannel.onNodeAdded(scope, function(node) {
+				decisionFactory.addNode(node);
+
+				i++;
+				var n = "node" + i;
+				scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : n});
+				$timeout(function(){
+					/*instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
+	          	anchor: 'BottomCenter', uuid: n + 'BottomCenter'
+	        });
+	        instance.addEndpoint(element[0].querySelector("#" + n) , targetEndpoint, {
+	          	anchor: 'TopCenter', uuid: n + 'TopCenter'
+	        });*/
+					var el = document.getElementById(n);
+
+					instance.draggable(el, {
+						grid: [20, 20], 
+						stop: function(event) {
+				  		console.log(event.pos[0]);
+				  		console.log(event.pos[1]);
+				  	}
+					});
+
+					/*instance.draggable(element[0].querySelectorAll(".node"), { 
+						grid: [20, 20], 
+						stop: function(event) {
+				  		console.log(event.pos[0]);
+				  		console.log(event.pos[1]);
+				  	} 
+					});*/
+				}, 50);
+
+			});
+
+
+  		
+
 	  	jsPlumb.ready(function () {
-	  		//console.log('ok our jsPlumb is ready');
-
 	  		instance = jsPlumb.getInstance({
-        // default drag options
-        DragOptions: { cursor: 'pointer', zIndex: 2000 },
-
-        // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
-        // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
-        ConnectionOverlays: [
-            [ "Arrow", { location: 1 } ],
-          ],
-        	//Container: "doc1"
-    		});
-	  		// this is the paint style for the connecting lines..
-		    var connectorPaintStyle = {
-		            lineWidth: 2,
-		            strokeStyle: "#61B7CF",
-		            joinstyle: "round",
-		            outlineColor: "#61B7CF",
-		            outlineWidth: 0
-		        },
-		    // .. and this is the hover style.
-		        connectorHoverStyle = {
-		            lineWidth: 4,
-		            strokeStyle: "#216477",
-		            outlineWidth: 2,
-		            outlineColor: "#216477"
-		        },
-		        endpointHoverStyle = {
-		            fillStyle: "#216477",
-		            strokeStyle: "#216477"
-		        },
-		    // the definition of source endpoints (the small blue ones)
-		        sourceEndpoint = {
-		            endpoint: "Dot",
-		            paintStyle: {
-		                strokeStyle: "#eb974e",
-		                fillStyle: "#eb974e",
-		                radius: 5,
-		                lineWidth: 2
-		            },
-		            isSource: true,
-		            connector: [ "Flowchart", { stub: [40, 60], gap: 5, cornerRadius: 5, alwaysRespectStubs: true } ],
-		            connectorStyle: connectorPaintStyle,
-		            hoverPaintStyle: endpointHoverStyle,
-		            connectorHoverStyle: connectorHoverStyle,
-		            dragOptions: {}
-		            
-		        },
-		    // the definition of target endpoints (will appear when the user drags a connection)
-		        targetEndpoint = {
-		            endpoint: "Dot",
-		            paintStyle: { fillStyle: "#049372", radius: 5 },
-		            hoverPaintStyle: endpointHoverStyle,
-		            maxConnections: -1,
-		            dropOptions: { hoverClass: "hover", activeClass: "active" },
-		            isTarget: true
-		            
-		        };
-		    var i = 0;
-		    communicationChannel.onAddDocument(scope, function() {
-		    	console.log('new document');
-		    	scope.nodes = [];
-		    	instance.detachEveryConnection();
-		    	instance.deleteEveryEndpoint();
-		    });
-
-
-    		communicationChannel.onNodeAdded(scope, function(node) {
-					decisionFactory.addNode(node);
-
-					console.log('ok node is added');
-					i++;
-					var n = "node" + i;
-					scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : n});
-					$timeout(function(){
-						instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
-		          	anchor: 'BottomCenter', uuid: 'node1BottomCenter'
-		        });
-		        instance.addEndpoint(element[0].querySelector("#" + n) , targetEndpoint, {
-		          	anchor: 'TopCenter', uuid: 'node1TopCenter'
-		        });
-
-						instance.draggable(element[0].querySelectorAll(".node"), { 
-							grid: [20, 20], 
-							stop: function(event) {
-					  		console.log(event.pos[0]);
-					  		console.log(event.pos[1]);
-					  	} 
-						});
-					}, 50);
-
-				});
-
-        $timeout(function(){
-        	instance.repaintEverything();
-	        var look = element.children('#node1');
-	        instance.batch(function () {
-	    			// make all the window divs draggable
-	    			//console.log(instance);
-	    			
-	    			
-
-	        	instance.draggable(element[0].querySelectorAll(".node"), { grid: [20, 20] });
-	        	//console.log('ok we are intializing');
-
-	    		})
-
-	    		jsPlumb.fire("jsPlumbDemoLoaded", instance);	
-        }, 50);
-
-        
-    		
-
+        	// default drag options
+        	DragOptions: { cursor: 'pointer', zIndex: 2000 },
+        	ConnectionsDetachable   : false,
+        	Anchors : [ "BottomCenter", "TopCenter" ]
+        });
+	  	
 	  	});
 	  }
 	}
