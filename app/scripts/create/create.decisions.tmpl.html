@@ -1,5 +1,10 @@
 <md-content class="create">
   <div class="row">
+    <div class="small-12 medium-9 medium-offset-3 columns messages">
+      <decision-logs></decision-logs>
+    </div>
+  </div>
+  <div class="row">
     <div class="small-12 medium-3 columns">
       <div class="row">
         <div class="small-12 columns left-menu">
@@ -10,34 +15,70 @@
                   <i class="mdi mdi-file-document" ></i> <p >New document</p>
                 </md-list-item>
                 <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
-                  <i class="mdi mdi-plus"></i> <p>Add new node</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.removeNode()">
-                  <i class="mdi mdi-close"></i> <p>Remove node</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
-                  <i class="mdi mdi-delete"></i> <p>Delete document</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
-                  <i class="mdi mdi-table-edit"></i> <p>Edit node</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
-                  <i class="mdi mdi-view-dashboard"></i> <p>Preview node</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
-                  <i class="mdi mdi-table-edit"></i> <p>Edit connection</p>
-                </md-list-item>
-                <md-divider></md-divider>
-                <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
-                  <i class="mdi mdi-view-dashboard"></i> <p>Preview connection</p>
-                </md-list-item>
-                <md-divider></md-divider>
+
+                <div ng-if="vm.state !== '_START_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                    <i class="mdi mdi-delete"></i> <p>Delete document</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+                <div ng-if="vm.state === '_DOCUMENT_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
+                    <i class="mdi mdi-plus"></i> <p>Add new node</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+                <div ng-if="vm.state === '_NODE_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
+                    <i class="mdi mdi-source-fork"></i> <p>Connect nodes</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+
+                <div ng-if="vm.state === '_NODE_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.removeNode()">
+                    <i class="mdi mdi-close"></i> <p>Remove node</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+                <div ng-if="vm.state === '_NODE_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                    <i class="mdi mdi-table-edit"></i> <p>Edit node</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+                <div ng-if="vm.state === '_NODE_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                    <i class="mdi mdi-view-dashboard"></i> <p>Preview node</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+                <div ng-if="vm.state === '_CONNECTION_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                    <i class="mdi mdi-table-edit"></i> <p>Edit connection</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
+                <div ng-if="vm.state === '_CONNECTION_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                    <i class="mdi mdi-view-dashboard"></i> <p>Preview connection</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
               </md-list>
               
             </md-card-content>

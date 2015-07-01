@@ -21,13 +21,17 @@
 	    scope: {
 	    	
 	    },
+	    require: '^createDecisions',
 	    templateUrl: 'scripts/create/decision.tree.tmpl.html'
 	  };
 	  return directive;
-	  function link(scope, element, attrs) {
-	  	var instance;
-	  	scope.nodes = [];
+	  function link(scope, element, attrs, createDecisionsCtrl) {
+	  	var instance,
+	  			clickedConnection,
+	  			clickedNode;
 
+	  	scope.nodes = [];
+	  	
 			
 			// this is the paint style for the connecting lines..
 		  var connectorPaintStyle = {
@@ -42,7 +46,7 @@
       connectorHoverStyle = {
         lineWidth: 2,
         strokeStyle: "#216477",
-        outlineWidth: 0,
+        outlineWidth: 2,
         outlineColor: "#216477"
       },
 
@@ -80,6 +84,7 @@
       };
 
 			scope.nodeClicked = function(id) {
+  			
   			/*if(id !== 'node1'){
 	  			instance.connect({
 					  source:"node1", 
@@ -91,10 +96,20 @@
 	          connectorHoverStyle: connectorHoverStyle
 					});
 					instance.repaintEverything();
+  			}*/
+  			if (clickedNode) {
+  				document.getElementById(clickedNode).classList.remove("selected");
+  				
   			}
+  			document.getElementById(id).className += ' selected';
+  			clickedNode = id;
 
-  			*/
+  			// i need to change the state. 
+
+  			//instance.select().setPaintStyle({ strokeStyle:"blue", lineWidth:5 });
+  			//instance.select({source:"node1", target: "node2"}).setPaintStyle({ strokeStyle:"blue", lineWidth:5 });
 	  	}
+
 
 	  	communicationChannel.onAddDocument(scope, function() {
 	    	scope.nodes = [];
@@ -107,8 +122,8 @@
 				decisionFactory.addNode(node);
 
 				i++;
-				var n = "node" + i;
-				scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : n});
+				var id = "node_" + i;
+				scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : id});
 				$timeout(function(){
 					/*instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
 	          	anchor: 'BottomCenter', uuid: n + 'BottomCenter'
@@ -116,7 +131,7 @@
 	        instance.addEndpoint(element[0].querySelector("#" + n) , targetEndpoint, {
 	          	anchor: 'TopCenter', uuid: n + 'TopCenter'
 	        });*/
-					var el = document.getElementById(n);
+					var el = document.getElementById(id);
 
 					instance.draggable(el, {
 						grid: [20, 20], 

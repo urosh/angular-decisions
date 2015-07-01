@@ -36,12 +36,21 @@
 		vm.deleteDocument = deleteDocument;
 		vm.editNode = editNode;
 		vm.previewNode = previewNode;
-		
+		vm.selectNode = selectNode;
+		vm.selectConnection =  selectConnection;
+		vm.states = ['start', 'document', 'node', 'connection', 'connection-source', 'connection-target'];
+		var _START_ = "_START_",
+				_DOCUMENT_ = "_DOCUMENT_",
+				_NODE_ = "_NODE_",
+				_NODE_SOURCE_ = "_NODE_SOURCE_",
+				_NODE_TARGET_ = "_NODE_TARGET_",
+				_CONNECTION_ = "_CONNECTION_";
+
+
+		vm.state = _START_;
+
 		
 
-		vm.selectTab = function(i) {
-			console.log('here?');
-		}
 		
 
 		function DialogController($scope, $mdDialog) {
@@ -84,6 +93,8 @@
 	    	if(newDocument !== undefined) {
 		    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
 	    		communicationChannel.addDocument();
+	    		vm.state = _DOCUMENT_;
+
 	    	}
 	    });
 		};
@@ -128,6 +139,15 @@
 
 		function previewConnection() {
 
+		};
+
+		function selectNode() {
+			console.log('node selected');
+
+		};
+
+		function selectConnection() {
+			console.log('connection selected');
 		}
 	}
 	
