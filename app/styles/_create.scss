@@ -5,9 +5,16 @@
 }
 
 .messages{
-	height: 50px;
+	height: 40px;
 }
 
+md-toast.md-center{
+
+  margin-left: auto;
+  margin-right: auto;
+  left: 0; right: 0;
+
+}
 .create{
 	margin-top: 20px;
 	@import "decisionTree"; 

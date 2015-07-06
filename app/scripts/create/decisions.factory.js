@@ -25,7 +25,7 @@
 	  }
 
 	  function addNode(node) {
-	  	var newNode = new Node(node.title, node.tags, node.text);
+	  	var newNode = new Node(node.title, node.tags, node.text, node.id);
 	  	doc.addNode(newNode);
 	  	console.log(doc);
 	  }
@@ -51,12 +51,13 @@
 
 	}
 
-	function Node(title, tags, description) {
+	function Node(title, tags, description, id) {
 		//var this;
 		//return this;
 		this.title = title;
 		this.tags = tags;
 		this.description = description;
+		this.id = id;
 	}
 
 	function Connection() {

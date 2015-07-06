@@ -12,9 +12,11 @@
     var _REMOVE_NODE_ = '_REMOVE_NODE_';
     var _DELETE_DOCUMENT_ = '_DELETE_DOCUMENT_';
     var _EDIT_NODE_ = '_EDIT_NODE_';
-    var _PREVIEW_NODE = '_PREVIEW_NODE';
+    var _PREVIEW_NODE_ = '_PREVIEW_NODE_';
     var _EDIT_CONNECTION_ = '_EDIT_CONNECTION_';
     var _PREVIEW_CONNECTION_ = '_PREVIEW_CONNECTION_';
+    var _NODE_SELECTED_ = '_NODE_SELECTED_';
+    var _ADD_CONNECTION_SELECTED_ = '_ADD_CONNECTION_SELECTED_';
 
 
     return {
@@ -22,6 +24,10 @@
       onAddDocument: onAddDocument,
       addNode: addNode,
       onNodeAdded: onNodeAdded,
+      nodeSelected: nodeSelected,
+      onNodeSelected: onNodeSelected,
+      addConnectionSelected: addConnectionSelected,
+      onAddConnectionSelected: onAddConnectionSelected 
     }
     function addDocument() {
       $rootScope.$broadcast(_ADD_DOCUMENT_);
@@ -43,6 +49,28 @@
         handler(args.node);
       });
     }
+
+    function nodeSelected() {
+      $rootScope.$broadcast(_NODE_SELECTED_);
+    }
+
+    function onNodeSelected($scope, handler) {
+      $scope.$on(_NODE_SELECTED, function(event) {
+        handler();
+      });
+    }  
+    function addConnectionSelected() {
+      $rootScope.$broadcast(_ADD_CONNECTION_SELECTED_);
+    }
+
+    function onAddConnectionSelected($scope, handler) {
+      $scope.$on(_ADD_CONNECTION_SELECTED_, function(event) {
+        handler();
+      });
+
+    }
+
+    
 
     
   };

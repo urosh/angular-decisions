@@ -18,7 +18,7 @@
 	    restrict: 'E',
 	    scope: {
 	    },
-	    template: '<div layout-fill layout="column" class="inset"></div>'
+	    template: '<div layout-fill layout="column" role="main" flex class="inset message-div"></div>'
 	  };
 	  return directive;
 	  function link(scope, element, attrs) {
@@ -26,8 +26,25 @@
 	  }
 	}
 	/* @ngInject */
-	function Controller (communicationChannel) {
-		
+	function Controller ($scope, communicationChannel, $mdToast, $animate) {
+		function ToastCtrl($scope) {
+			$scope.closeToast = function() {
+    		$mdToast.hide();
+  		};
+		}
+
+		communicationChannel.onAddConnectionSelected($scope, function(event) {
+			console.log('ok node is selected lets show the toast');
+			$mdToast.show({
+	      controller: ToastCtrl,
+	      template: '<md-toast><span flex>Select a target node.</span></md-toast>',
+	      hideDelay: 12000,
+	      position: "top center"
+	    });
+
+		})
 	}
+
+
 	
 })();

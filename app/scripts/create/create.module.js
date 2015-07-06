@@ -97,15 +97,33 @@
 					});
 					instance.repaintEverything();
   			}*/
-  			if (clickedNode) {
-  				document.getElementById(clickedNode).classList.remove("selected");
-  				
+  			
+  			
+  			if (!clickedNode) {
+  				document.getElementById(id).className += ' selected';
+  				clickedNode = id;
+  				createDecisionsCtrl.selectNode(id);
+  			}else{
+  				if(clickedNode !== id) {
+  					document.getElementById(clickedNode).classList.remove("selected");
+	  				
+  					document.getElementById(id).className += ' selected';
+  					clickedNode = id;
+  					createDecisionsCtrl.selectNode(id);
+  				}else{
+	  				document.getElementById(clickedNode).classList.remove("selected");
+	  				clickedNode = null;
+	  				createDecisionsCtrl.unselectNode();
+	  				
+  					
+  				}
   			}
-  			document.getElementById(id).className += ' selected';
-  			clickedNode = id;
+
+
+  			
 
   			// i need to change the state. 
-
+  			
   			//instance.select().setPaintStyle({ strokeStyle:"blue", lineWidth:5 });
   			//instance.select({source:"node1", target: "node2"}).setPaintStyle({ strokeStyle:"blue", lineWidth:5 });
 	  	}
@@ -119,11 +137,16 @@
 	  	var i = 0;
 
   		communicationChannel.onNodeAdded(scope, function(node) {
-				decisionFactory.addNode(node);
+				
 
 				i++;
 				var id = "node_" + i;
+				node.id = id;
+				decisionFactory.addNode(node);
+				//scope.nodes[id] = {'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : id};
+				
 				scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : id});
+				
 				$timeout(function(){
 					/*instance.addEndpoint(element[0].querySelector("#" + n) , sourceEndpoint, {
 	          	anchor: 'BottomCenter', uuid: n + 'BottomCenter'

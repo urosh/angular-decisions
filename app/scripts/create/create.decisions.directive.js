@@ -37,8 +37,9 @@
 		vm.editNode = editNode;
 		vm.previewNode = previewNode;
 		vm.selectNode = selectNode;
+		vm.unselectNode = unselectNode;
 		vm.selectConnection =  selectConnection;
-		vm.states = ['start', 'document', 'node', 'connection', 'connection-source', 'connection-target'];
+		vm.connectNode = connectNode;
 		var _START_ = "_START_",
 				_DOCUMENT_ = "_DOCUMENT_",
 				_NODE_ = "_NODE_",
@@ -91,6 +92,7 @@
 	    })
 	    .then(function(newDocument) {
 	    	if(newDocument !== undefined) {
+
 		    	vm.currentDocument = decisionFactory.newDocument(newDocument.title, newDocument.tags, newDocument.text);
 	    		communicationChannel.addDocument();
 	    		vm.state = _DOCUMENT_;
@@ -109,7 +111,10 @@
 		      targetEvent: ev,
 		    })
 		    .then(function(newDocument) {
-		    	communicationChannel.addNode(newDocument);
+		    	if(newDocument !== undefined){
+			    	communicationChannel.addNode(newDocument);
+		    		
+		    	}
 		    });
 
 			}
@@ -142,12 +147,25 @@
 		};
 
 		function selectNode() {
-			console.log('node selected');
+
+			vm.state = "_NODE_";
+			
 
 		};
 
+		function connectNode() {
+			vm.state = "_NODE_";
+			console.log('ok we are here?');
+			communicationChannel.addConnectionSelected();
+		}
+
+		function unselectNode() {
+			vm.state = "_DOCUMENT_";
+		}
+
 		function selectConnection() {
 			console.log('connection selected');
+
 		}
 	}
 	

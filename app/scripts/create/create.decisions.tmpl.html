@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div ng-if="vm.state === '_DOCUMENT_'">
+                <div ng-if="vm.state !== '_START_'">
                   <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
                     <i class="mdi mdi-plus"></i> <p>Add new node</p>
                   </md-list-item>
@@ -33,7 +33,7 @@
                 </div>
 
                 <div ng-if="vm.state === '_NODE_'">
-                  <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
+                  <md-list-item class="tree-menu-item" ng-click="vm.connectNode()">
                     <i class="mdi mdi-source-fork"></i> <p>Connect nodes</p>
                   </md-list-item>
                   <md-divider></md-divider>
