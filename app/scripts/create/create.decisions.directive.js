@@ -147,15 +147,17 @@
 		};
 
 		function selectNode() {
-
+			if(vm.state === "_NODE_TARGET_") {
+				console.log('ok this node is my target.');
+			}
 			vm.state = "_NODE_";
 			
 
 		};
 
 		function connectNode() {
-			vm.state = "_NODE_";
-			console.log('ok we are here?');
+			console.log('ok now we will connect nodes, next node i select is target.')
+			vm.state = "_NODE_TARGET_";
 			communicationChannel.addConnectionSelected();
 		}
 

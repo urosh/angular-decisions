@@ -148,6 +148,8 @@ module.exports = function (grunt) {
         }
       }
     },
+    // Karma testing framwork
+   
 
     // Compiles Sass to CSS and generates necessary files if requested
     sass: {
@@ -370,7 +372,15 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
-    }
+    },
+     // Test settings
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
+    },
+    
   });
 
 
@@ -407,8 +417,13 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      /*'connect:test',
+      'mocha'*/
+      'clean:server',
+      'concurrent:test',
+      'autoprefixer',
       'connect:test',
-      'mocha'
+      'karma'
     ]);
   });
 
