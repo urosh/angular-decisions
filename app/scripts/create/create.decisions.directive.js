@@ -4,7 +4,11 @@
 	angular
 		.module('app.buildDecisions')
 	  .directive('createDecisions', directive);
-	  
+	
+	angular
+		.module('app.buildDecisions')
+		.controller('Controller', Controller);
+
 	/* @ngInject */
 	function directive (communicationChannel) {
 	  // Usage:
@@ -12,7 +16,7 @@
 	  // Creates:
 	  //
 	  var directive = {
-	    controller: Controller,
+	    controller: 'Controller',
 	    controllerAs: 'vm',
 	    link: link,
 	    restrict: 'E',
@@ -47,11 +51,13 @@
 				_NODE_TARGET_ = "_NODE_TARGET_",
 				_CONNECTION_ = "_CONNECTION_";
 
-
+		$scope.test = "ajme";
 		vm.state = _START_;
 
 		
-
+		function test() {
+			return 2;
+		}
 		
 
 		function DialogController($scope, $mdDialog) {

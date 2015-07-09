@@ -16,18 +16,25 @@ module.exports = function(config) {
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
 
+    
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-aria/angular-aria.js',
       'bower_components/jsplumb/dist/js/dom.jsPlumb-1.7.5-min.js',
       'app/scripts/create/create.module.js',
       'app/scripts/app.js',
       'app/scripts/create/create.decisions.directive.js',
+      'app/scripts/create/messages.factory.js',
+      'app/scripts/create/decisions.factory.js',
       //'app/scripts/**/*.js',
       //'app/scripts/**/**/*.js',
+      'app/scripts/create/create.decisions.tmpl.html',
+      'app/scripts/create/decision.tree.tmpl.html',
       'test/mock/**/*.js',
       'test/spec/**/*.js'
     ],
@@ -53,9 +60,19 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
+    preprocessors: { 
+      'app/scripts/create/decision.tree.tmpl.html': ['ng-html2js'], 
+      'app/scripts/create/create.decisions.tmpl.html': ['ng-html2js'],
+    }, 
 
+    ngHtml2JsPreprocessor: { 
+      stripPrefix: 'app/'
+      //moduleName: 'app.tmpl' 
+    },
+    
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false,
