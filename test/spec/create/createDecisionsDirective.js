@@ -6,8 +6,8 @@ describe("CreateDecision Directive ", function() {
 	beforeEach(module('app.buildDecisions'));
 	beforeEach(module('ngMaterial'));
 	// load the templates
-  beforeEach(module('scripts/create/create.decisions.tmpl.html', 'scripts/create/decision.tree.tmpl.html'));
-
+  //beforeEach(module('scripts/create/create.decisions.tmpl.html', 'scripts/create/decision.tree.tmpl.html'));
+  beforeEach(module('app.tmpl'));
   beforeEach(inject(function($rootScope, $compile) {
   	scope = $rootScope.$new();
 
@@ -26,7 +26,24 @@ describe("CreateDecision Directive ", function() {
   it('Initial state should be start', function() {
   	//console.log('OK we are testing here. I hope');
   	//console.log(element);
-  	console.log(controller.state);
-  	expect(4).toBe(4);
+  	
+  	expect(controller.state).toBe("_START_");
+  	//expect(4).toBe(4);
   });
+
+  it('Selecting a node should change the state to _NODE_ ', function() {
+  	controller.selectNode();
+  	expect(controller.state).toBe("_NODE_");
+  });
+
+  it('Selecting node connection should change the state to _NODE_TARGET_', function() {
+  	controller.connectNode();
+  	expect(controller.state).toBe("_NODE_TARGET_");
+  });
+
+  it('Selecting a node with _NODE_TARGET_ state should create new connection', function() {
+  	controller.state = "_NODE_TARGET_";
+  	controller.selectNode();
+  	
+  })
 })

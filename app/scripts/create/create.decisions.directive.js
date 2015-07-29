@@ -51,13 +51,14 @@
 				_NODE_TARGET_ = "_NODE_TARGET_",
 				_CONNECTION_ = "_CONNECTION_";
 
-		$scope.test = "ajme";
 		vm.state = _START_;
+		var nodeConnections = {
+			'source': '',
+			'target': ''
+		};
 
 		
-		function test() {
-			return 2;
-		}
+		
 		
 
 		function DialogController($scope, $mdDialog) {
@@ -152,10 +153,18 @@
 
 		};
 
-		function selectNode() {
-			if(vm.state === "_NODE_TARGET_") {
-				console.log('ok this node is my target.');
+		function selectNode(id) {
+			if(vm.state === "_DOCUMENT_" || vm.state === "_NODE_") {
+				nodeConnections.source = id;
 			}
+			if(vm.state === "_NODE_TARGET_") {
+				nodeConnections.target = id;
+				communicationChannel.connectNodes(nodeConnections);
+				vm.state = "_DOCUMENT_";
+
+			}
+
+			console.log(nodeConnections);
 			vm.state = "_NODE_";
 			
 

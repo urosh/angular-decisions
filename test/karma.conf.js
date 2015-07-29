@@ -69,8 +69,8 @@ module.exports = function(config) {
     }, 
 
     ngHtml2JsPreprocessor: { 
-      stripPrefix: 'app/'
-      //moduleName: 'app.tmpl' 
+      stripPrefix: 'app/',
+      moduleName: 'app.tmpl' 
     },
     
     // Continuous Integration mode
