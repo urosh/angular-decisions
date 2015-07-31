@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div ng-if="vm.state !== '_START_'">
+                <div ng-if="vm.state !== '_START_' && vm.state !== '_CONNECTION_'">
                   <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
                     <i class="mdi mdi-plus"></i> <p>Add new node</p>
                   </md-list-item>
@@ -79,6 +79,14 @@
                   <md-divider></md-divider>
 
                 </div>
+                <div ng-if="vm.state === '_CONNECTION_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.removeConnection()">
+                    <i class="mdi mdi-close"></i> <p>Remove connection</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div>
+
               </md-list>
               
             </md-card-content>
@@ -105,7 +113,7 @@
             {{vm.currentDocument.title}}
           </div>
         </md-toolbar>
-        <starc-decision-tree ng-if="vm.currentDocument"></starc-decision-tree>
+        <starc-decision-tree ng-if="vm.currentDocument" con="vm.selectedConnection"></starc-decision-tree>
       </md-card> 
       
 

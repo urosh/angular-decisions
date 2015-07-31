@@ -43,7 +43,9 @@
 		vm.selectNode = selectNode;
 		vm.unselectNode = unselectNode;
 		vm.selectConnection =  selectConnection;
+		vm.removeConnection = removeConnection;
 		vm.connectNode = connectNode;
+		vm.selectedConnection = "ajme";
 		var _START_ = "_START_",
 				_DOCUMENT_ = "_DOCUMENT_",
 				_NODE_ = "_NODE_",
@@ -181,8 +183,20 @@
 		}
 
 		function selectConnection() {
-			console.log('connection selected');
+			console.log(vm.selectedConnection);
+			if(vm.selectedConnection !== null) {
+				vm.state = "_CONNECTION_";
+				
+			}else{
+				vm.state = "_DOCUMENT_";
+			}
+			$scope.$apply();
+			console.log(vm.state);
 
+		};
+
+		function removeConnection() {
+			console.log(vm.selectedConnection);
 		}
 	}
 	

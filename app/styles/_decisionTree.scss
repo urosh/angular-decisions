@@ -67,5 +67,11 @@
     cursor: pointer;
 	}
 
+  ._jsPlumb_connector path{
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
 	
 }

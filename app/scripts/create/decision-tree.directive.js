@@ -13,7 +13,9 @@
     var directive = {
       restrict: 'E',
       link: link,
-      scope: {},
+      scope: {
+        selectedConnection: '=con'
+      },
       require: '^createDecisions',
       templateUrl: 'scripts/create/decision.tree.tmpl.html'
     };
@@ -181,17 +183,47 @@
             source: connection.source, 
             target: connection.target,
             anchors:["BottomCenter", "TopCenter" ],
-            //endpointStyle: targetEndpoint,
-            endpointStyles:[ 
+            endpointStyle: targetEndpoint,
+            /*endpointStyles:[ 
                 { fillStyle:"blue", outlineColor:"black", outlineWidth:1 },
                 { fillStyle:"green" }
-            ],
+            ],*/
             connector: ["Flowchart", { stub: [20, 20], gap: 0, cornerRadius: 5 , alwaysRespectStubs: true} ],
-            connectorStyle: connectorPaintStyle,
-            connectorHoverStyle: connectorHoverStyle
+            
           });
+        
+        connection.setPaintStyle(connectorPaintStyle);
           connection.bind("click", function(conn) {
-            createDecisionsCtrl.selectConnection(conn);
+               
+            if(!connection.clicked) {
+              
+              connection.setPaintStyle({
+                lineWidth: 6,
+                strokeStyle: "#61B7CF",
+                joinstyle: "round",
+                outlineColor: "#61B7CF",
+                outlineWidth: 0
+              });
+             connection.clicked = true; 
+             scope.selectedConnection = connection; 
+             scope.$apply();
+             createDecisionsCtrl.selectConnection();
+            }else{
+              scope.selectedConnection = null; 
+              connection.setPaintStyle({
+                  lineWidth: 2,
+                  strokeStyle: "#61B7CF",
+                  joinstyle: "round",
+                  outlineColor: "#61B7CF",
+                  outlineWidth: 0
+              });
+              connection.clicked = false;
+              scope.$apply();
+              createDecisionsCtrl.selectConnection();
+            }
+
+            
+            
           });
           instance.repaintEverything();
       });
