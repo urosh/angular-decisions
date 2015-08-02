@@ -45,7 +45,9 @@
 		vm.selectConnection =  selectConnection;
 		vm.removeConnection = removeConnection;
 		vm.connectNode = connectNode;
-		vm.selectedConnection = "ajme";
+
+		vm.selectedConnection = "";
+		
 		var _START_ = "_START_",
 				_DOCUMENT_ = "_DOCUMENT_",
 				_NODE_ = "_NODE_",
@@ -54,6 +56,7 @@
 				_CONNECTION_ = "_CONNECTION_";
 
 		vm.state = _START_;
+		
 		var nodeConnections = {
 			'source': '',
 			'target': ''
@@ -166,14 +169,11 @@
 
 			}
 
-			console.log(nodeConnections);
 			vm.state = "_NODE_";
-			
 
 		};
 
 		function connectNode() {
-			console.log('ok now we will connect nodes, next node i select is target.')
 			vm.state = "_NODE_TARGET_";
 			communicationChannel.addConnectionSelected();
 		}
@@ -183,7 +183,6 @@
 		}
 
 		function selectConnection() {
-			console.log(vm.selectedConnection);
 			if(vm.selectedConnection !== null) {
 				vm.state = "_CONNECTION_";
 				
@@ -191,7 +190,7 @@
 				vm.state = "_DOCUMENT_";
 			}
 			$scope.$apply();
-			console.log(vm.state);
+			
 
 		};
 
