@@ -1,0 +1,29 @@
+<md-dialog class="edit-node-form" padding aria-label="Edit a node">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Edit a node</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="close" ng-click="close()">
+        <i class="mdi mdi-close dialog-close"  ></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <p>Ok we will edit node now</p>
+    <div id="ng-app"  ng-controller="demoController" >
+        
+        
+        <div class="container border-around">
+            <div text-angular 
+                  ng-model="htmlContent" 
+                  name="demo-editor" 
+                   
+                  ta-html-editor-class="border-around">
+            </div>
+        </div>
+        
+        
+    </div>
+
+  </md-content>
+</md-dialog>

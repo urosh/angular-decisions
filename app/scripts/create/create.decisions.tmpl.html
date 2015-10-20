@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div ng-if="vm.state !== '_START_' && vm.state !== '_CONNECTION_'">
+                <div ng-if="vm.state !== '_START_' && vm.state !== '_CONNECTION_' && vm.state !== '_NODE_'">
                   <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
                     <i class="mdi mdi-plus"></i> <p>Add new node</p>
                   </md-list-item>
@@ -48,9 +48,16 @@
                   <md-divider></md-divider>
 
                 </div>
+                
+                <div ng-if="vm.state === '_NODE_'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.addData()"> 
+                    <i class="mdi mdi-plus"></i> <p>Add objects</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+                </div>
 
                 <div ng-if="vm.state === '_NODE_'">
-                  <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
+                  <md-list-item class="tree-menu-item" ng-click="vm.editNode()"> 
                     <i class="mdi mdi-table-edit"></i> <p>Edit node</p>
                   </md-list-item>
                   <md-divider></md-divider>

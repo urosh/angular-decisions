@@ -1,0 +1,47 @@
+<md-dialog flow-init class="add-data-form" padding aria-label="Edit a node">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Add objects</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="close" ng-click="close()">
+        <i class="mdi mdi-close dialog-close"  ></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    
+    <div class="upload-section">
+      <md-button class="md-raised" type="file" ngf-select="upload($file)" ngf-pattern="'.jpg,video/*,.png, .jpeg, .JPG, .JPEG, .gif, .obj, .ply, !.jog'"
+        ngf-max-height="1000" ngf-max-size="1MB">Select file</md-button>
+       or
+      
+      <div ngf-drop="upload($file)" ngf-select ng-model="files" class="drop-box" 
+        ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+        accept="image/*,application/pdf" ngf-pattern="'.jpg,video/*,.png, .jpeg, .JPG, .JPEG, .gif, .obj, .ply, !.jog'">
+        Drop your files here
+      </div>
+    </div>
+    
+    <br><br>
+    
+    <div ng-repeat="object in objects" class="upload-stats">
+      <span ng-if="object['completed'] && object['status'] === 'ok'"><b>{{object.fileName}}</b> uploaded successfully. </span>
+      <span ng-if="object['completed'] && object['status'] !== 'ok'">There was a problem while uploading the file. Please try again. </span>
+      <span ng-if="!object['completed']">Filename: {{object.fileName}}</span><br>
+      <span ng-if="!object['completed']" class="upload-progress">Uploading... {{object.progressPercentage}}% </span>  <md-progress-linear ng-if="!object['completed']" md-mode="determinate" value="{{object.progressPercentage}}" class="progress-bar"></md-progress-linear>
+      <div class="img-container">
+        <img ng-src="{{object['fileLocation']}}" height="72" width="72"/>
+        
+      </div>
+      <div ng-if="object['completed']" class="upload-item-options">
+        <div>
+          <i class="mdi mdi-delete" ng-click="removeObject($event)"></i> <span>Delete document</span>
+        </div>
+        <div>
+          <i class="mdi mdi-pencil" ng-click="editObject(object.type)"></i> <span>{{object.type}} Edit object</span>
+        </div>
+      </div>
+    </div>  
+
+  </md-content>
+</md-dialog>

@@ -1,7 +1,106 @@
+@import "textEditor";
+*, *:before, *:after {
+    -webkit-user-select: none; /* Chrome/Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+}
+
 .new-document-form{
 	width: 550px;
 	///margin-bottom: 10px;
 	//border: solid 1px red;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 450px;
+    height: 150px;
+    text-align: center;
+    margin: 10px;
+    display: inline-block;
+    margin-top: 10px;
+    line-height: 150px;
+    
+    font-size: 32px;
+    color: #DDD;
+}
+
+.upload-stats{
+	font-size: 11px;
+	margin-top: 10px;
+	overflow: auto;
+	
+	md-progress-linear{
+		margin-bottom: 10px;
+	}
+	img{
+		margin-top: 5px;
+	}
+	padding-bottom: 5px;
+	border-bottom: solid 2px #DDD;
+}
+.upload-progress{
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: 10px;
+	color: #000111;
+}
+
+.upload-section{
+	height: 150px;
+	line-height: 100px;
+}
+
+
+.add-data-form{
+	width: 650px;
+	min-height: 350px;
+	//overflow: auto;
+	.img-container{
+		float: left;
+		display: inline-block;
+
+	}
+
+	
+	.upload-item-options{
+		display: inline-block;
+		margin: 5px 0 0 5px;
+		span{
+			display: inline-block;
+			height: 16px;
+			line-height: 16px;
+			vertical-align: middle;
+		}
+		i{
+			-webkit-user-select: none; /* Chrome/Safari */        
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+ */
+
+			/* Rules below not implemented in browsers yet */
+			-o-user-select: none;
+			user-select: none;
+			-webkit-tap-highlight-color:transparent;
+		}
+		.mdi{
+			font-size: 22px;
+			vertical-align: middle;
+			cursor: pointer;
+			-webkit-user-select: none; /* Chrome/Safari */        
+			-moz-user-select: none; /* Firefox */
+			-ms-user-select: none; /* IE10+ */
+
+			/* Rules below not implemented in browsers yet */
+			-o-user-select: none;
+			user-select: none;
+
+		}
+	}
+}
+
+.edit-node-form{
+	width: 650px;
 }
 
 .messages{
