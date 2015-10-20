@@ -69,7 +69,7 @@
       }
     }
 	    
-    $scope.removeObject = function(ev) {
+    $scope.removeObject = function(ev, index) {
     	var confirm = $mdDialog.confirm()
         .title('Are you sure you want to delete this object?')
         .ariaLabel('Deleting an object')
@@ -78,11 +78,18 @@
         .cancel('Cancel');
 	    
 	    $mdDialog.show(confirm).then(function() {
-	      //$scope.status = 'You decided to get rid of your debt.';
-	    	// ok delete the object
-	    }, function() {
-	    	$mdDialog.show({
-				  targetEvent: ev,
+	    	$scope.objects.splice(index, 1);
+	    	console.log($scope.objects);
+	    	showAddObjectModal(ev);
+	    }, function(){
+	    	showAddObjectModal(ev);
+	    });
+    };
+
+    function showAddObjectModal(){
+    	console.log($scope.objects);
+    	$mdDialog.show({
+				  //targetEvent: ev,
 				  controller: addDataControler,
 		      locals: {
 		      	objects: $scope.objects
@@ -92,8 +99,7 @@
 		      parent: angular.element(document.body),
 		      
 				});
-			});
-    };
+    }
 
     $scope.editObject = function(tp) {
     	console.log('ok we are now editing an object');

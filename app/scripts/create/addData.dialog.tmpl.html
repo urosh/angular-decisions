@@ -35,7 +35,7 @@
       </div>
       <div ng-if="object['completed']" class="upload-item-options">
         <div>
-          <i class="mdi mdi-delete" ng-click="removeObject($event)"></i> <span>Delete document</span>
+          <i class="mdi mdi-delete" ng-click="removeObject($event, $index)"></i> <span>Delete document</span>
         </div>
         <div>
           <i class="mdi mdi-pencil" ng-click="editObject(object.type)"></i> <span>Edit object</span>
