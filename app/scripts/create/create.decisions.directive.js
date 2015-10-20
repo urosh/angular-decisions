@@ -30,7 +30,123 @@
 
 
 	  }
+	}	
+	/* Dialog controler*/
+	function startNewDocumentControler($scope, $mdDialog) {
+	  $scope.answer = function() {
+	    $mdDialog.hide();
+	  };
+
+	  $scope.addNewDocument = function() {
+	  	if($scope.documentForm.$valid) {
+	  		$mdDialog.hide($scope.document);
+	  	}
+	  }
+
 	}
+
+	/* Dialog controler*/
+	function NewNodeController($scope, $mdDialog) {
+		$scope.close = function() {
+			$mdDialog.hide();
+		}
+		$scope.addNewNode = function() {
+			if($scope.documentForm.$valid) {
+				$mdDialog.hide($scope.document);
+			}
+		}
+	}
+
+	/* Dialog controler*/
+	function addDataControler($scope, Upload, objects, $mdDialog) {
+		$scope.close = function() {
+			$mdDialog.hide();
+		}
+		$scope.objects = objects || [];
+		$scope.submit = function() {
+      if (form.file.$valid && $scope.file && !$scope.file.$error) {
+        $scope.upload($scope.file);
+      }
+    }
+	    
+    $scope.removeObject = function(ev) {
+    	var confirm = $mdDialog.confirm()
+        .title('Are you sure you want to delete this object?')
+        .ariaLabel('Deleting an object')
+        .targetEvent(ev)
+        .ok('Ok')
+        .cancel('Cancel');
+	    
+	    $mdDialog.show(confirm).then(function() {
+	      //$scope.status = 'You decided to get rid of your debt.';
+	    	// ok delete the object
+	    }, function() {
+	    	$mdDialog.show({
+				  targetEvent: ev,
+				  controller: addDataControler,
+		      locals: {
+		      	objects: $scope.objects
+		      },
+		      bindToControler: true,
+		      templateUrl: 'scripts/create/addData.dialog.tmpl.html',
+		      parent: angular.element(document.body),
+		      
+				});
+			});
+    };
+
+    $scope.editObject = function(tp) {
+    	console.log('ok we are now editing an object');
+    	console.log(tp);
+    };
+
+
+		$scope.progressPercentage = 0;
+    $scope.upload = function (file) {
+    	if(file){
+	    	$scope.objects.push({
+        	'fileName': '',
+        	'progressPercentage': 0,
+        	'thumbnail': '',
+        	'fileLocation': '',
+        	'status': '',
+        	'completed': false
+        });
+
+        Upload.upload({
+          url: 'http://public.cyi.ac.cy/starcRepo/decisions/upload',
+          method: 'POST',
+					file: file,
+					sendFieldsAs: 'form',
+        }).progress(function (evt) {
+            //$scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            if(evt.config._file){
+	            $scope.objects[$scope.objects.length - 1]['fileName'] = evt.config._file.name;
+	            $scope.objects[$scope.objects.length - 1]['progressPercentage'] = parseInt(100.0 * evt.loaded / evt.total);;
+	          }
+            //console.log('progress: ' + $scope.progressPercentage + '% ' + evt.config._file.name);
+        }).success(function (data, status, headers, config) {
+        		$scope.objects[$scope.objects.length -1]['completed'] = true;
+            $scope.objects[$scope.objects.length -1]['status'] = 'ok';
+            $scope.objects[$scope.objects.length -1]['fileLocation'] = data.fileLocation;
+            $scope.objects[$scope.objects.length -1]['type'] = data.type;
+
+        }).error(function (data, status, headers, config) {
+            //console.log('error status: ' + status);
+            $scope.objects[$scope.objects.length -1]['completed'] = true;
+            $scope.objects[$scope.objects.length -1]['status'] = 'error';
+        })
+    		
+    	}
+    };
+
+
+	}
+
+
+
+
+
 	/* @ngInject */
 	function Controller ($scope, communicationChannel, $mdDialog, decisionFactory) {
 		var vm = this;
@@ -66,38 +182,19 @@
 		
 		
 
-		function DialogController($scope, $mdDialog) {
-		  $scope.answer = function() {
-		    $mdDialog.hide();
-		  };
+		
 
-		  $scope.addNewDocument = function() {
-		  	if($scope.documentForm.$valid) {
-		  		$mdDialog.hide($scope.document);
-		  	}
-		  }
-
-		}
-
-		function NewNodeController($scope, $mdDialog) {
-			$scope.close = function() {
-				$mdDialog.hide();
-			}
-
-			$scope.addNewNode = function() {
-				if($scope.documentForm.$valid) {
-					$mdDialog.hide($scope.document);
-					
-				}
-			}
-		}
+		
+		/*************************************************/
+		/* New document */
+		/*************************************************/
 
 		
 
 		function startNewDocument(ev) {
 			// open modal window for creating a document
 			$mdDialog.show({
-	      controller: DialogController,
+	      controller: startNewDocumentControler,
 	      templateUrl: 'scripts/create/newDocument.dialog.tmpl.html',
 	      parent: angular.element(document.body),
 	      targetEvent: ev,
@@ -112,6 +209,10 @@
 	    	}
 	    });
 		};
+		/*************************************************/
+		/* Adding new node to the view */
+		/*************************************************/
+		
 
 		function addNewNode(ev) {
 			// open modal window for creating a document
@@ -125,114 +226,14 @@
 		    .then(function(newDocument) {
 		    	if(newDocument !== undefined){
 			    	communicationChannel.addNode(newDocument);
-		    		
 		    	}
 		    });
-
 			}
-
-			
 		};
-
+		/*************************************************/
 		/* Adding data to a node controler */
-		function addDataControler($scope, Upload, objects) {
-			$scope.close = function() {
-				$mdDialog.hide();
-			}
-			$scope.objects = objects || [];
-			$scope.submit = function() {
-	      if (form.file.$valid && $scope.file && !$scope.file.$error) {
-	        $scope.upload($scope.file);
-	      }
-	    }
-	    
-	    $scope.removeObject = function(ev) {
-	    	var confirm = $mdDialog.confirm()
-          .title('Are you sure you want to delete this object?')
-          //.content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
-          .ariaLabel('Deleting an object')
-          .targetEvent(ev)
-          .ok('Yes!')
-          .cancel('No, get me back from here');
-		    
-		    $mdDialog.show(confirm).then(function() {
-		      //$scope.status = 'You decided to get rid of your debt.';
-		      console.log('ok');
-		    }, function() {
-		    	console.log('cancel');
-		    	
-		    	$mdDialog.show({
-					  targetEvent: ev,
-					  //scope: $scope.$new(),   // Uses prototypal inheritance to gain access to parent scope
-					  controller: addDataControler,
-			      locals: {
-			      	objects: $scope.objects
-			      },
-			      clickOutsideToClose: false,
-			      bindToControler: true,
-			      templateUrl: 'scripts/create/addData.dialog.tmpl.html',
-			      parent: angular.element(document.body),
-			      
-					});
+		/*************************************************/
 
-					
-
-
-		    	//$scope.dialog(null); /* DATENSATZ ZURUECKGEBEN */
-		    	//$scope.dialog(null, local[1]);
-		      //$scope.status = 'You decided to keep your debt.';
-		    });
-	    };
-
-	    $scope.editObject = function(tp) {
-	    	console.log('ok we are now editing an object');
-	    	console.log(tp);
-	    };
-
-
-	   
-
-			$scope.progressPercentage = 0;
-	    $scope.upload = function (file) {
-	    	if(file){
-		    	$scope.objects.push({
-	        	'fileName': '',
-	        	'progressPercentage': 0,
-	        	'thumbnail': '',
-	        	'fileLocation': '',
-	        	'status': '',
-	        	'completed': false
-	        });
-
-	        Upload.upload({
-	          url: 'http://public.cyi.ac.cy/starcRepo/decisions/upload',
-	          method: 'POST',
-						file: file,
-						sendFieldsAs: 'form',
-	        }).progress(function (evt) {
-	            //$scope.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-	            if(evt.config._file){
-		            $scope.objects[$scope.objects.length - 1]['fileName'] = evt.config._file.name;
-		            $scope.objects[$scope.objects.length - 1]['progressPercentage'] = parseInt(100.0 * evt.loaded / evt.total);;
-		          }
-	            //console.log('progress: ' + $scope.progressPercentage + '% ' + evt.config._file.name);
-	        }).success(function (data, status, headers, config) {
-	        		$scope.objects[$scope.objects.length -1]['completed'] = true;
-	            $scope.objects[$scope.objects.length -1]['status'] = 'ok';
-	            $scope.objects[$scope.objects.length -1]['fileLocation'] = data.fileLocation;
-	            $scope.objects[$scope.objects.length -1]['type'] = data.type;
-
-	        }).error(function (data, status, headers, config) {
-	            //console.log('error status: ' + status);
-	            $scope.objects[$scope.objects.length -1]['completed'] = true;
-	            $scope.objects[$scope.objects.length -1]['status'] = 'error';
-	        })
-	    		
-	    	}
-	    };
-
-
-		};
 
 		function addData(ev) {
 			$mdDialog.show({
