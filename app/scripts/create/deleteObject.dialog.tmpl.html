@@ -1,0 +1,17 @@
+<md-dialog flow-init class="deleteObjectConfirmation" padding aria-label="Delete an object">
+  <md-content layout-padding>
+    <p>Are you sure you want to remove this object?</p>
+    <div>
+      <img ng-src="{{object.fileLocation}}" width="92" height="92" alt="">
+      <span>
+        <b>{{object.fileName}}</b> 
+      </span>
+      
+    </div>
+    <div>
+      
+      <md-button ng-click="answer($event, 'yes')" >Ok</md-button ><md-button ng-click="answer($event, 'no')">Cancel</md-button>
+    </div>
+
+  </md-content>
+</md-dialog>

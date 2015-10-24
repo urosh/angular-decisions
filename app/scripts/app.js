@@ -4,7 +4,8 @@
 			'ui.router',
 			'ngMaterial',
 			'app.buildDecisions',
-			'ngMessages'
+			'ngMessages',
+			'firebase'
 		]);
 
 	angular.module('starcDecisions')

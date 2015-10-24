@@ -42,7 +42,21 @@
 	      position: "top center"
 	    });
 
-		})
+		});
+
+		communicationChannel.onDataSaved($scope, function(event) {
+			$mdToast.show({
+	      controller: ToastCtrl,
+	      template: '<md-toast><span flex>Item(s) saved successfuly.</span></md-toast>',
+	      hideDelay: 5000,
+	      position: "top center"
+	    });
+
+		});
+
+
+
+
 	}
 
 

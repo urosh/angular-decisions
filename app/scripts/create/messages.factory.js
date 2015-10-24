@@ -18,6 +18,7 @@
     var _NODE_SELECTED_ = '_NODE_SELECTED_';
     var _ADD_CONNECTION_SELECTED_ = '_ADD_CONNECTION_SELECTED_';
     var _CONNECT_NODES_ = '_CONNECT_NODES_';
+    var _DATA_SAVED_ = '_DATA_SAVED_';
 
 
     return {
@@ -30,7 +31,9 @@
       addConnectionSelected: addConnectionSelected,
       onAddConnectionSelected: onAddConnectionSelected,
       connectNodes: connectNodes,
-      onConnectNodes: onConnectNodes 
+      onConnectNodes: onConnectNodes,
+      dataSaved: dataSaved,
+      onDataSaved: onDataSaved 
     }
     function addDocument() {
       $rootScope.$broadcast(_ADD_DOCUMENT_);
@@ -82,6 +85,17 @@
         handler(args.connection);
       })
     }
+
+    function dataSaved(){
+      $rootScope.$broadcast(_DATA_SAVED_);
+    }
+
+    function onDataSaved($scope, handler) {
+      $scope.$on(_DATA_SAVED_, function(event){
+        handler();
+      });
+    }
+
 
     
 

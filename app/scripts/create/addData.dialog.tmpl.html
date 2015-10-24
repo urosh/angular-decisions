@@ -30,18 +30,20 @@
       <span ng-if="!object['completed']">Filename: {{object.fileName}}</span><br>
       <span ng-if="!object['completed']" class="upload-progress">Uploading... {{object.progressPercentage}}% </span>  <md-progress-linear ng-if="!object['completed']" md-mode="determinate" value="{{object.progressPercentage}}" class="progress-bar"></md-progress-linear>
       <div class="img-container">
-        <img ng-src="{{object['fileLocation']}}" height="72" width="72"/>
+        <img ng-src="{{object['thumbnail']}}" height="72" width="72"/>
         
       </div>
-      <div ng-if="object['completed']" class="upload-item-options">
+      <div ng-if="object['completed'] && object['status'] === 'ok'" class="upload-item-options">
         <div>
           <i class="mdi mdi-delete" ng-click="removeObject($event, $index)"></i> <span>Delete document</span>
         </div>
         <div>
-          <i class="mdi mdi-pencil" ng-click="editObject(object.type)"></i> <span>Edit object</span>
+          <i class="mdi mdi-pencil" ng-click="editObject($event, object.type, $index)"></i> <span>Edit object</span>
         </div>
       </div>
     </div>  
-
+    <div class="saveButtonDiv">
+      <md-button ng-click="saveObjects()" ng-if="(objects.length > 0)" class="md-raised md-primary" >Save objects</md-button >
+    </div>
   </md-content>
 </md-dialog>

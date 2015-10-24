@@ -72,8 +72,10 @@
       communicationChannel.onNodeAdded(scope, function(node) {
         i++;
         var id = 'node_' + i;
+        id = decisionFactory.generateID();
+        
         node.id = id;
-        decisionFactory.addNode(node);
+        decisionFactory.saveNewNode(node);
         scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : id});
         
         $timeout(function(){
