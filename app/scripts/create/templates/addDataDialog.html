@@ -35,15 +35,15 @@
       </div>
       <div ng-if="object['completed'] && object['status'] === 'ok'" class="upload-item-options">
         <div>
-          <i class="mdi mdi-delete" ng-click="removeObject($event, $index)"></i> <span>Delete document</span>
+          <i class="mdi mdi-delete" ng-click="removeObject($index)"></i> <span>Delete document</span>
         </div>
         <div>
-          <i class="mdi mdi-pencil" ng-click="editObject($event, object.type, $index)"></i> <span>Edit object</span>
+          <i class="mdi mdi-pencil" ng-click="editObject(object.type, $index)"></i> <span>Edit object</span>
         </div>
       </div>
     </div>  
-    <div class="saveButtonDiv">
+    <!-- <div class="saveButtonDiv">
       <md-button ng-click="saveObjects()" ng-if="(objects.length > 0)" class="md-raised md-primary" >Save objects</md-button >
-    </div>
+    </div> -->
   </md-content>
 </md-dialog>

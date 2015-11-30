@@ -1,7 +1,7 @@
 <md-dialog class="new-document-form" padding aria-label="Create new document">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Create new document</h2>
+      <h2>Add new {{documentType}}</h2>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="close" ng-click="close()">
         <i class="mdi mdi-close dialog-close"  ></i>
@@ -12,7 +12,7 @@
     <form novalidate name="documentForm">
       <div layout layout-sm="column">
         <md-input-container flex>
-          <label>Document title</label>
+          <label>Title</label>
           <input required name="title" ng-model="document.title">
           <div ng-messages="documentForm.title.$error">
             <div ng-message="required">This is required.</div>
@@ -28,7 +28,7 @@
       </div>
       
       <md-input-container flex>
-        <label>Short description here</label>
+        <label>Short description</label>
         <textarea ng-model="document.text" columns="5" ></textarea>
       </md-input-container>
       <md-button class="md-raised md-primary" ng-click="addNewDocument();">Submit</md-button>

@@ -1,0 +1,61 @@
+<md-dialog flow-init class="editObject" padding aria-label="Edit a node">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Edit 3D object</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="close" ng-click="close()">
+        <i class="mdi mdi-close dialog-close"  ></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div class="topDiv">
+      <div>
+        <div class="img-div">
+          <div>
+            <md-switch md-no-ink  ng-model="data.showAnnotations" ng-change="showAnnotations()" aria-label="Show annotations">
+              Show annotations
+            </md-switch>
+          </div>
+          <div>
+            <three-dee-renderer docid="object.id" setannotation="setAnnotation(annotation)"></three-dee-renderer>
+          </div>
+          <div class="addAnnotationDiv">
+            <i class="mdi mdi-plus" ng-click="addAnnotation()" ></i> <span ng-click="addAnnotation()">Add annotation</span>
+          </div>
+
+        </div>
+        
+        
+      </div>
+      <div class="metadataDiv">
+        <div class="chipDiv">
+
+          <span ng-click="showObjectDescription()" class="{{objectDescription.active}}">Object description</span>
+          <span ng-repeat="annotation in annotations" ng-click="showObjectAnnotation($index)" class="{{annotation.description.active}}">
+            {{annotation.description.title}}
+            <i ng-click="removeAnnotation($index)" class="mdi mdi-close"></i>
+          </span>
+          
+        </div>
+        <md-input-container>
+          <label>Title</label>
+          <input  ng-model="description.title">
+        </md-input-container>
+        <md-input-container>
+          <label>Tags</label>
+          <input  ng-model="description.tags" >
+        </md-input-container>
+        <md-input-container flex>
+          <label>Description</label>
+          <textarea ng-model="description.text" columns="1" ></textarea>
+        </md-input-container>
+        <md-button class="md-raised md-primary saveButton" ng-click="save()">Save description</md-button> 
+      </div>
+      
+    </div>
+
+   
+    
+  </md-content>
+</md-dialog>

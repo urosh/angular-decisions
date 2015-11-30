@@ -17,7 +17,7 @@
         selectedConnection: '=con'
       },
       require: '^createDecisions',
-      templateUrl: 'scripts/create/decision.tree.tmpl.html'
+      templateUrl: 'scripts/create/templates/decisionTree.html'
     };
 
     return directive;
@@ -47,7 +47,6 @@
       };
 
       var targetEndpoint = {
-        
         paintStyle: { fillStyle: "#ffffff", strokeStyle: "#f2f2f2", radius: 1 },
       };
 
@@ -67,40 +66,70 @@
         instance.deleteEveryEndpoint();
       });
 
+      communicationChannel.onNodeRemoved(scope, function(data) {
+        var index;
+        scope.nodes.forEach(function(node, i) {
+          if (node === data.nodeId) {
+            index = i;
+          }
+        })
+        var j = connections.length;
+        var tempConnections = [];
+        while (j--) {
+          data.connections.forEach(function(removedConnection){
+            if(removedConnection === connections[j].id){
+              jsPlumb.detach(connections[j]);
+            }else{
+              tempConnections.push(connections[j]);
+            }
+          });
+        }
+        connections = tempConnections;
+        jsPlumb.remove(element[0].querySelector('#' + data.nodeId));
+        scope.nodes.splice(index, 1);
+        clickedNode = undefined;
+        
+      });
+
+
       var i = 0;
       
       communicationChannel.onNodeAdded(scope, function(node) {
-        i++;
-        var id = 'node_' + i;
-        id = decisionFactory.generateID();
-        
-        node.id = id;
-        decisionFactory.saveNewNode(node);
-        scope.nodes.push({'node' : node.title,'title': node.title, 'tags': node.tags, 'description': node.description, 'style': {top: '20px', left: '20px'}, 'id' : id});
+        //decisionFactory.saveNewNode(node);
+
+
+        scope.nodes.push({
+          'node' : node.description.title,
+          'title': node.description.title, 
+          'tags': node.description.tags, 
+          'description': node.description.text, 
+          'style': {top: '20px', left: '20px'}, 
+          'id' : node.id
+        });
         
         $timeout(function(){
-          var el = document.getElementById(id);
+          var el = document.getElementById(node.id);
           instance.draggable(el, {
             grid: [20, 20], 
             stop: function(event) {
-              console.log(event.pos[0]);
-              console.log(event.pos[1]);
+              //console.log(event.pos[0]);
+              //console.log(event.pos[1]);
             }
           });
         }, 50);
       });
 
       var connections = [];
-      communicationChannel.onConnectNodes(scope, function(connection){
+      communicationChannel.onConnectNodes(scope, function(newConnection){
         var connection = instance.connect({
-            source: connection.source, 
-            target: connection.target,
+            source: newConnection.source, 
+            target: newConnection.target,
             anchors:["BottomCenter", "TopCenter" ],
             endpoint: "Blank",
             connector: ["Flowchart", { stub: [20, 20], gap: 0, cornerRadius: 5 , alwaysRespectStubs: true} ],
             paintStyle: connectionStyle
           });
-
+        connection.id = newConnection.id;
         //connection.setPaintStyle(connectorStyle);
         connections.push(connection);
 
@@ -116,7 +145,7 @@
             createDecisionsCtrl.unselectNode();
             clickedNode = null;
             scope.$apply();
-            createDecisionsCtrl.selectConnection();
+            createDecisionsCtrl.selectConnection(connection.id);
           }else{
             scope.selectedConnection = null; 
             connection.setPaintStyle(connectionStyle);

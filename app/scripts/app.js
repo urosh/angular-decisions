@@ -15,6 +15,10 @@
   angular.module('starcDecisions')
 		.config(AppStates);
 
+
+	angular.module('starcDecisions')
+  	.constant('_', _);
+
 	AppStates.$inject = ['$stateProvider', '$urlRouterProvider'];
 	
 	

@@ -32,9 +32,8 @@
     		$mdToast.hide();
   		};
 		}
-
-		communicationChannel.onAddConnectionSelected($scope, function(event) {
-			console.log('ok node is selected lets show the toast');
+		console.log('we dont do nothing here?');
+		/*communicationChannel.onAddConnectionSelected($scope, function(event) {
 			$mdToast.show({
 	      controller: ToastCtrl,
 	      template: '<md-toast><span flex>Select a target node.</span></md-toast>',
@@ -42,9 +41,9 @@
 	      position: "top center"
 	    });
 
-		});
+		});*/
 
-		communicationChannel.onDataSaved($scope, function(event) {
+		/*communicationChannel.onDataSaved($scope, function(event) {
 			$mdToast.show({
 	      controller: ToastCtrl,
 	      template: '<md-toast><span flex>Item(s) saved successfuly.</span></md-toast>',
@@ -52,7 +51,7 @@
 	      position: "top center"
 	    });
 
-		});
+		});*/
 
 
 
