@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
     <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.css" />
     <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css" />
+    <link rel="stylesheet" href="bower_components/cropperjs/dist/cropper.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -48,6 +49,7 @@
 
     </div>
     <!-- bower:js -->
+    <script src="bower_components/lodash/lodash.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -68,6 +70,7 @@
     <script src="bower_components/textAngular/dist/textAngularSetup.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/cropperjs/dist/cropper.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -83,14 +86,35 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <!-- <script src="scripts/main.js"></script> -->
+        
+        <!-- Tree.js files -->
+        <script src="http://threejs.org/build/three.min.js"></script>
+        <script src="scripts/create/OBJLoader.js"></script>
+
+        <script src="http://threejs.org/examples/js/Detector.js"></script>
+        <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+        <script src="http://threejs.org/examples/js/controls/TrackballControls.js"></script>
+        <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+        <script src="http://threejs.org/examples/js/renderers/Projector.js"></script>
 
         <!-- Create decision trees -->
-        <script src="scripts/create/create.module.js"></script>
-        <script src="scripts/create/decision-tree.directive.js"></script>
-        <script src="scripts/create/create.decisions.directive.js"></script>
-        <script src="scripts/create/messages.factory.js"></script>
-        <script src="scripts/create/decisions.factory.js"></script>
-        <script src="scripts/create/messages.directive.js"></script>
+        <script src="scripts/create/createModule.js"></script>
+        <script src="scripts/create/directives/decisionTree.js"></script>
+        <script src="scripts/create/directives/createDecisions.js"></script>
+        <script src="scripts/create/directives/messages.js"></script>
+        <script src="scripts/create/directives/imageCropper.js"></script>
+        <script src="scripts/create/directives/threeDeeRenderer.js"></script>
+        <script src="scripts/create/services/messages.js"></script>
+        <script src="scripts/create/services/dialogMessages.js"></script>
+        <script src="scripts/create/services/decisionsData.js"></script>
+        <script src="scripts/create/services/userActions.js"></script>
+        <script src="scripts/create/services/states.js"></script>
+        <script src="scripts/create/controlers/editObject.js"></script>
+        <script src="scripts/create/controlers/newDocument.js"></script>
+        <script src="scripts/create/controlers/addData.js"></script>
+        <script src="scripts/create/controlers/deleteObject.js"></script>
+        <script src="scripts/create/controlers/deleteNode.js"></script>
+        <script src="scripts/create/controlers/editNode.js"></script>
         
         <script src="scripts/app.js"></script>
         <!-- endbuild -->

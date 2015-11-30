@@ -32,6 +32,7 @@
       $scope.htmlContent = '';
     });
 
+  
 
 	
 })();

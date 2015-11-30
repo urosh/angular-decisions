@@ -1,7 +1,7 @@
 <md-content class="create">
   <div class="row">
     <div class="small-12 medium-9 medium-offset-3 columns messages">
-      <decision-logs></decision-logs>
+     <!--  <decision-logs></decision-logs> -->
     </div>
   </div>
   <div class="row">
@@ -16,7 +16,7 @@
                 </md-list-item>
                 <md-divider></md-divider>
 
-                <div ng-if="vm.state !== '_START_'">
+                <div ng-if="vm.state !== 'START'">
                   <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
                     <i class="mdi mdi-delete"></i> <p>Delete document</p>
                   </md-list-item>
@@ -24,7 +24,7 @@
 
                 </div>
 
-                <div ng-if="vm.state !== '_START_' && vm.state !== '_CONNECTION_' && vm.state !== '_NODE_'">
+                <div ng-if="vm.state !== 'START' && vm.state !== 'CONNECTION' && vm.state !== 'NODE'">
                   <md-list-item class="tree-menu-item" ng-click="vm.addNewNode()">
                     <i class="mdi mdi-plus"></i> <p>Add new node</p>
                   </md-list-item>
@@ -32,7 +32,7 @@
 
                 </div>
 
-                <div ng-if="vm.state === '_NODE_'">
+                <div ng-if="vm.state === 'NODE'">
                   <md-list-item class="tree-menu-item" ng-click="vm.connectNode()">
                     <i class="mdi mdi-source-fork"></i> <p>Connect nodes</p>
                   </md-list-item>
@@ -41,7 +41,7 @@
                 </div>
 
 
-                <div ng-if="vm.state === '_NODE_'">
+                <div ng-if="vm.state === 'NODE'">
                   <md-list-item class="tree-menu-item" ng-click="vm.removeNode()">
                     <i class="mdi mdi-close"></i> <p>Remove node</p>
                   </md-list-item>
@@ -49,21 +49,21 @@
 
                 </div>
                 
-                <div ng-if="vm.state === '_NODE_'">
-                  <md-list-item class="tree-menu-item" ng-click="vm.addDataToNode()"> 
+                <div ng-if="vm.state === 'NODE'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.addDataToTree()"> 
                     <i class="mdi mdi-plus"></i> <p>Add objects</p>
                   </md-list-item>
                   <md-divider></md-divider>
                 </div>
 
-                <div ng-if="vm.state === '_NODE_'">
+                <div ng-if="vm.state === 'NODE'">
                   <md-list-item class="tree-menu-item" ng-click="vm.editNode()"> 
                     <i class="mdi mdi-table-edit"></i> <p>Edit node</p>
                   </md-list-item>
                   <md-divider></md-divider>
 
                 </div>
-                <div ng-if="vm.state === '_NODE_'">
+                <div ng-if="vm.state === 'NODE'">
                   <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
                     <i class="mdi mdi-view-dashboard"></i> <p>Preview node</p>
                   </md-list-item>
@@ -71,28 +71,41 @@
 
                 </div>
 
-                <div ng-if="vm.state === '_CONNECTION_'">
+                <div ng-if="vm.state === 'CONNECTION'">
                   <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
                     <i class="mdi mdi-table-edit"></i> <p>Edit connection</p>
                   </md-list-item>
                   <md-divider></md-divider>
-
+                </div>
+                <div ng-if="vm.state === 'CONNECTION'">
+                  <md-list-item class="tree-menu-item" ng-click="vm.addDataToTree()"> 
+                    <i class="mdi mdi-plus"></i> <p>Add objects</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
                 </div>
 
-                <div ng-if="vm.state === '_CONNECTION_'">
+                <div ng-if="vm.state === 'CONNECTION'">
                   <md-list-item class="tree-menu-item" ng-click="vm.deleteDocument()"> 
                     <i class="mdi mdi-view-dashboard"></i> <p>Preview connection</p>
                   </md-list-item>
                   <md-divider></md-divider>
 
                 </div>
-                <div ng-if="vm.state === '_CONNECTION_'">
+                <div ng-if="vm.state === 'CONNECTION'">
                   <md-list-item class="tree-menu-item" ng-click="vm.removeConnection()">
                     <i class="mdi mdi-close"></i> <p>Remove connection</p>
                   </md-list-item>
                   <md-divider></md-divider>
 
                 </div>
+                <!-- <div >
+                  <md-list-item class="tree-menu-item" ng-click="vm.testImageDetails()">
+                    <i class="mdi mdi-close"></i> <p>Test image details</p>
+                  </md-list-item>
+                  <md-divider></md-divider>
+
+                </div> -->
+
 
               </md-list>
               
@@ -117,7 +130,7 @@
         <!-- <md-card-content  > -->
         <md-toolbar ng-if="vm.currentDocument">
           <div class="md-toolbar-tools">
-            {{vm.currentDocument.title}}
+            {{vm.currentDocument.description.title}}
           </div>
         </md-toolbar>
         <starc-decision-tree ng-if="vm.currentDocument" con="vm.selectedConnection"></starc-decision-tree>

@@ -3,15 +3,12 @@
     <p>Are you sure you want to remove this object?</p>
     <div>
       <img ng-src="{{object.fileLocation}}" width="92" height="92" alt="">
-      <span>
+      <span class="fileName">
         <b>{{object.fileName}}</b> 
       </span>
-      
     </div>
-    <div>
-      
-      <md-button ng-click="answer($event, 'yes')" >Ok</md-button ><md-button ng-click="answer($event, 'no')">Cancel</md-button>
+    <div class="buttonDiv">
+      <md-button class="md-raised md-primary" ng-click="answer('yes')" >Ok</md-button ><md-button class="md-raised md-primary" ng-click="answer('no')">Cancel</md-button>
     </div>
-
   </md-content>
 </md-dialog>

@@ -19,7 +19,10 @@
     var _ADD_CONNECTION_SELECTED_ = '_ADD_CONNECTION_SELECTED_';
     var _CONNECT_NODES_ = '_CONNECT_NODES_';
     var _DATA_SAVED_ = '_DATA_SAVED_';
-
+    var _ITEM_SAVED_ = '_ITEM_SAVED_';
+    var _ON_ITEM_SAVED_ = '_ON_ITEM_SAVED_';
+    var _SET_ANNOTATION_REGION_ = '_SET_ANNOTATION_REGION_';
+    
 
     return {
       addDocument: addDocument,
@@ -33,7 +36,13 @@
       connectNodes: connectNodes,
       onConnectNodes: onConnectNodes,
       dataSaved: dataSaved,
-      onDataSaved: onDataSaved 
+      onDataSaved: onDataSaved,
+      itemSaved: itemSaved,
+      onItemSaved: onItemSaved,
+      setAnnotationRegion: setAnnotationRegion,
+      onAnnotationRegionSet: onAnnotationRegionSet,
+      removeNode: removeNode,
+      onNodeRemoved: onNodeRemoved 
     }
     function addDocument() {
       $rootScope.$broadcast(_ADD_DOCUMENT_);
@@ -93,6 +102,36 @@
     function onDataSaved($scope, handler) {
       $scope.$on(_DATA_SAVED_, function(event){
         handler();
+      });
+    }
+
+    function itemSaved(data) {
+      $rootScope.$broadcast(_ITEM_SAVED_, {data: data});
+    }
+
+    function onItemSaved($scope, handler) {
+      $scope.$on(_ITEM_SAVED_, function(event, args) {
+        handler(args.data);
+      });
+    }
+
+    function setAnnotationRegion(data) {
+      $rootScope.$broadcast(_SET_ANNOTATION_REGION_, {data: data});
+    }
+
+    function onAnnotationRegionSet($scope, handler) {
+      $scope.$on(_SET_ANNOTATION_REGION_, function(event, args) {
+        handler(args);
+      });
+    }
+
+    function removeNode(data) {
+      $rootScope.$broadcast(_REMOVE_NODE_, {nodeId: data.nodeId, connections: data.connections});
+    }
+
+    function onNodeRemoved($scope, handler) {
+      $scope.$on(_REMOVE_NODE_, function(event, args) {
+        handler(args);
       });
     }
 
