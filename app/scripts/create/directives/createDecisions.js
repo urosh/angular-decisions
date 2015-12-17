@@ -24,7 +24,7 @@
 	}
 
 	/* @ngInject */
-	function Controller ($scope, communicationChannel, $mdDialog, decisionFactory, userActions, dialogMessages, appStates) {
+	function Controller ($scope, communicationChannel, $mdDialog, decisionFactory, userActions, dialogMessages, appStates, storyMessages) {
 		var vm = this;
 		vm.startNewDocument = startNewDocument;
 		vm.addNewNode = addNewNode;
@@ -59,17 +59,18 @@
 		var modalStates = []; // here i store modal states 
 		
 		dialogMessages.onModalForward($scope, function(item){
-			dialogManager(userActions[item.next], item.locals);
+			dialogManager(userActions[item.next], item.nextData);
 			modalStates.push(item);
 		});
 
 		dialogMessages.onModalReverse($scope, function() {
 			var item = modalStates.pop();
 			if(item){
-				dialogManager(userActions[item.current], item.locals);
+				dialogManager(userActions[item.current], item.currentData);
 			}
 		});
 
+		
 
 		function dialogManager(dialogType, obj) {
 			var dialogData = userActions.getDialogData(dialogType);
@@ -143,9 +144,7 @@
 			// based on the current state we might either select clicked node or establish a connection with this node
 			// this function is called from tree directive, since nodes and connection handlers are there. 
 			// if node is already clicked unselecting will be handled there
-			console.log(vm.state);
 			if(vm.state === applicationModes.DOCUMENT || vm.state === applicationModes.NODE || vm.state === applicationModes.CONNECTION) {
-				console.log('we are here?');
 				nodeConnections.source = id;
 				setApplicationState(applicationModes.NODE);
 			}
@@ -162,7 +161,6 @@
 					setApplicationState(applicationModes.NODE);
 				});
 			}
-			console.log(vm.state);
 			//
 		};
 
@@ -196,7 +194,8 @@
 		
 
 		function editNode() {
-			dialogManager(userActions.editNode).then(function(data) {
+			var treeItem = appStates.getCurrentTreeItem();
+			dialogManager(userActions.editNode, {treeItem: treeItem}).then(function(data) {
 				if(data){
 					//communicationChannel.dataSaved();
 					console.log('ok something happened here');

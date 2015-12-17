@@ -2,22 +2,23 @@
   'use strict';
   angular
     .module('app.buildDecisions')
-    .directive('threeDeeRenderer', threeDeeDirective);
-  
+    .directive('threeDeeRenderer', threeDeeRenderer);
   /* @ngInject */
-  function threeDeeDirective ($timeout, communicationChannel, decisionFactory) {
+  function threeDeeRenderer ($timeout, communicationChannel, decisionFactory) {
     var directive = {
       restrict: 'E',
-      link: link,
       scope: {
         docid: '=',
         setannotation: '&',
-        object: '='
+        object: '=',
+        mode: '='
       },
-      template: '<div class="threeDeeDiv"><md-progress-circular class="md-warn" md-mode="{{loaderActive}}" md-diameter="70"></md-progress-circular></div>'
+      template: '<div class="threeDeeDiv"><md-progress-circular class="md-warn" md-mode="{{loaderActive}}" md-diameter="70"></md-progress-circular></div>',
+      link: link,
     };
+    return directive;
 
-      
+    
     
 
     var camera, 
@@ -38,13 +39,29 @@
       
     function link(scope, element, attrs) {
       if(scope.object === '3d'){
-
+        communicationChannel.onAnnotationRegionSet(scope, function(coords){
+          var sphereGeometry = new THREE.SphereGeometry( 3, 32, 32 );
+          var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading } );
+          var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+          if (typeof coords.data !== 'undefined'){
+            sphere.position.copy(coords.data);
+            //currentSphere = sphere;
+            
+            scene.remove( currentSphere );
+            currentSphere = sphere;
+            scene.add( currentSphere );
+            render();
+          }else{
+            scene.remove( currentSphere );
+            render();
+          }
+          
+        });
         scope.loaderActive = "indeterminate";
         raycaster = new THREE.Raycaster();
         mouse = new THREE.Vector2();
         container = element[0].children[0];
         
-
         $timeout(function() {
           camera = new THREE.PerspectiveCamera( 45, container.clientWidth / container.clientHeight, 1, 2000 );  
           camera.position.z = 400;
@@ -108,71 +125,63 @@
           mouseVector = new THREE.Vector2();
           projector = new THREE.Projector();
 
-
-          container.addEventListener( 'click', onMouseClick, false );
+          if(scope.mode === 'edit'){
+            container.addEventListener( 'click', onMouseClick, false );
+          }
           //
           animate();
 
           
         }, 200);
+  
+        
 
-        function animate() {
-          requestAnimationFrame( animate );
-          controls.update();
-          render();
-        }
-
-        function render() {
-         renderer.render( scene, camera );
-        }
-
-        var currentSphere;
-        function onMouseClick(event) {
-          event.preventDefault();
-
-          var parentPosition = getPosition(container);
-          var xPosition = event.clientX - parentPosition.x;
-          var yPosition = event.clientY - parentPosition.y + 40;
-          
-          mouse.x = ( xPosition / container.clientWidth ) * 2 - 1;
-          mouse.y = - ( yPosition / container.clientHeight ) * 2 + 1;
-
-          raycaster.setFromCamera( mouse, camera ); 
-
-          // calculate objects intersecting the picking ray
-          var intersects = raycaster.intersectObjects( scene.children, true );
-          var intersection = ( intersects.length ) > 0 ? intersects[ 0 ] : null;
-          if(intersection !== null){
-            var sphereGeometry = new THREE.SphereGeometry( 3, 32, 32 );
-            var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading } );
-            var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
-            sphere.position.copy(intersection.point);
-            //currentSphere = sphere;
-            
-            scene.remove( currentSphere );
-            currentSphere = sphere;
-            scene.add( currentSphere );
-            render();
-            scope.setannotation({annotation: intersection.point});
-
-          } 
       }
 
-        /* 
-          x: -14.41375351882081
-          y: -0.703109864512399
-          z: 15.569970992613207
-        */
-          /*var sphereGeometry = new THREE.SphereGeometry( 3, 32, 32 );
+      function animate() {
+        requestAnimationFrame( animate );
+        controls.update();
+        render();
+      }
+        
+      function render() {
+       renderer.render( scene, camera );
+      }
+        
+      var currentSphere;
+        
+      function onMouseClick(event) {
+        event.preventDefault();
+
+        var parentPosition = getPosition(container);
+        var xPosition = event.clientX - parentPosition.x;
+        var yPosition = event.clientY - parentPosition.y;
+        
+        mouse.x = ( xPosition / container.clientWidth ) * 2 - 1;
+        mouse.y = - ( yPosition / container.clientHeight ) * 2 + 1;
+
+        raycaster.setFromCamera( mouse, camera ); 
+
+        // calculate objects intersecting the picking ray
+        var intersects = raycaster.intersectObjects( scene.children, true );
+        var intersection = ( intersects.length ) > 0 ? intersects[ 0 ] : null;
+        if(intersection !== null){
+          var sphereGeometry = new THREE.SphereGeometry( 3, 32, 32 );
           var sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xff0000, shading: THREE.FlatShading } );
           var sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+          sphere.position.copy(intersection.point);
+          //currentSphere = sphere;
           
-          sphere.position.copy(new THREE.Vector3(-14.41375351882081, -0.703109864512399, 15.569970992613207 ));
-          scene.add( sphere );
-          render();*/
+          scene.remove( currentSphere );
+          currentSphere = sphere;
+          scene.add( currentSphere );
+          render();
+          scope.setannotation({annotation: intersection.point});
 
-
+        } 
       }
+
+
 
 
     }
@@ -194,7 +203,7 @@
 
 
 
-    return directive;
+    
 
 
   };  

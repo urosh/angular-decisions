@@ -1,10 +1,10 @@
 (function(){
 	"use strict";
 
-	angular.module('app.buildDecisions', ['textAngular', 'ngFileUpload']);
+	angular.module('app.buildDecisions', ['ngFileUpload', 'youtube-embed']);
 
-	angular.module('app.buildDecisions')
-    .config(function($provide){
+	//angular.module('app.buildDecisions')
+    /*.config(function($provide){
       $provide.decorator('taOptions', ['$delegate', function(taOptions) { // $delegate is the taOptions we are decorating
         taOptions.toolbar = [
             ['h1', 'h2', 'h3',  'p'],
@@ -26,11 +26,11 @@
         taOptions.toolbar[2].push('uploadImage');
         return taOptions;
       }]);    
-    })
-    
+    })*/
+    /*
     .controller("demoController", function demoController($scope) {
       $scope.htmlContent = '';
-    });
+    });*/
 
   
 

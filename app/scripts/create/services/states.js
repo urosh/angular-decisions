@@ -81,8 +81,8 @@
       getApplicationMode: getApplicationMode,
       setCurrentTreeItem: setCurrentTreeItem,
       getCurrentTreeItem: getCurrentTreeItem,
-      setCurrentObject: setCurrentObject,
-      getCurrentObject: getCurrentObject  
+      //setCurrentObject: setCurrentObject,
+      //getCurrentObject: getCurrentObject  
     };
 
     return service;

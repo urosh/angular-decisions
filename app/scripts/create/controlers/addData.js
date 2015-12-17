@@ -37,18 +37,21 @@
     /* Editing an object */
     $scope.editObject = function(type, index) {
       var nextItem = (type === 'image') ? 'editImage' : 'edit3D';
-      appStates.setCurrentObject({
+      /*appStates.setCurrentObject({
         type: type,
         id: $scope.objects[index].id
-      });
+      });*/
+
       dialogMessages.modalForward({
         'current': 'addDataToNode',
         'next': nextItem,
-        'locals': {
-          data: {
-            treeItemType: 'nodes'
+        'nextData': {
+          currentObject: {
+            type: type,
+            id: $scope.objects[index].id
           }
-        }
+        },
+        
       });
     }
 
@@ -57,7 +60,9 @@
       dialogMessages.modalForward({
         'current': 'addDataToNode',
         'next': 'deleteObject',
-        'locals': $scope.objects[index].id
+        'nextData': {
+          id: $scope.objects[index].id 
+        } 
       });
     }
 

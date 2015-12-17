@@ -1,0 +1,25 @@
+<div ng-class="{'activeBlock': vm.activeBlock}">
+  <md-content ng-click="vm.blockClicked(vm.item.id)" layout="row" layout-wrap layout-align="start">
+    <md-card ng-repeat="object in vm.item.data">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{object.description.title}}</span>
+          <span class="md-subhead">{{object.description.tags}}</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content layout="row" layout-align="space-between">
+        <div class="md-media-md card-media">
+          <img ng-src="{{object.thumbnail}}" alt="">
+        </div>
+        <md-card-actions layout="column">
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <i class="mdi mdi-window-close" ></i>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="Settings">
+            <i class="mdi mdi-magnify" ></i>
+          </md-button>
+        </md-card-actions>
+      </md-card-content>
+    </md-card>
+  </md-content>
+</div>
