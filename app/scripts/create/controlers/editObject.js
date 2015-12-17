@@ -23,7 +23,7 @@
   var annotationData;
 
 
-  function editObject($scope, $mdDialog,  dialogMessages, decisionFactory, appStates, communicationChannel, _){
+  function editObject($scope, $mdDialog,  dialogMessages, decisionFactory, appStates, communicationChannel, _, currentObject){
     $scope.close = function() {
       dialogMessages.modalReverse();
     }
@@ -31,11 +31,8 @@
 
     $scope.activeTabIndicator = ['act'];
 
-
     //$scope.object = decisionFactory.getActiveObject();
-    var currentObject = appStates.getCurrentObject();
     $scope.objectType = currentObject.type;
-    console.log($scope.objectType);
     var currentTreeItem = appStates.getCurrentTreeItem();
     
 
@@ -49,7 +46,7 @@
     $scope.description = decisionFactory.getObjectDescription(currentObject.id);
     
 
-    $scope.setAnnotationArea = function(annotation) {
+    $scope.setAnnotation = function(annotation) {
       annotationData = annotation;
     }
     

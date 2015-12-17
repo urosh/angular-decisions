@@ -17,6 +17,7 @@
       this.editImage = 'EDIT_IMAGE';
       this.edit3D = 'EDIT_3D';
       this.deleteObject = 'DELETE_OBJECT';
+      this.objectDetails = 'OBJECT_DETAILS';
       var dialogData = {};
 
       dialogData['NEW_DOCUMENT'] = {
@@ -83,6 +84,14 @@
         'openFrom'    :   '.mdi-table-edit',
         'closeTo'     :   '.mdi-table-edit'
       }
+
+      dialogData['OBJECT_DETAILS'] = {
+        'controller'  :   'objectDetails',
+        'templateUrl' :   'scripts/create/templates/objectDetails.html',
+        'openFrom'    :   '.mdi-table-edit',
+        'closeTo'     :   '.mdi-table-edit'
+      }
+
 
 
 

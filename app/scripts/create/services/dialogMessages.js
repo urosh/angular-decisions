@@ -10,12 +10,7 @@
     var _REPLACE_MODAL_ = '_REPLACE_MODAL_';
     var _REVERSE_MODAL_ = '_REVERSE_MODAL_';
 
-    return {
-      modalForward: modalForward,
-      onModalForward: onModalForward,
-      modalReverse: modalReverse,
-      onModalReverse: onModalReverse
-    }
+    
 
     function modalForward(item) {
       $rootScope.$broadcast(_REPLACE_MODAL_, item);
@@ -37,8 +32,17 @@
       });
     }
 
-
     
+
+    return {
+      modalForward: modalForward,
+      onModalForward: onModalForward,
+      modalReverse: modalReverse,
+      onModalReverse: onModalReverse,
+      
+    }
+
+
 
 
     

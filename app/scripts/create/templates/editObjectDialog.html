@@ -8,15 +8,21 @@
       </md-button>
     </div>
   </md-toolbar>
-  <md-content layout-padding>
+  <md-content >
     <div class="topDiv">
-      <div>
+      <div class="objectDiv">
         <div class="img-div">
           <div>
             <p class="objectFileName">{{object.fileName}}</p>
           </div>
-          <image-cropper ng-show="objectType === 'image'" object="objectType" image="object.fileLocation" setarea="setAnnotationArea(annotation)"></image-cropper>
-          <three-dee-renderer ng-show="objectType === '3d'" object="objectType" docid="object.id" setannotation="setAnnotation(annotation)"></three-dee-renderer>
+          <image-cropper ng-show="objectType === 'image'" mode="'edit'" object="objectType" image="object.fileLocation" setannotation="setAnnotation(annotation)"></image-cropper>
+          <three-dee-renderer
+                ng-show="objectType === '3d'"  
+                object="objectType" 
+                docid="object.id"
+                mode="'edit'" 
+                setannotation="setAnnotation(annotation)">
+          </three-dee-renderer>
           <!-- <div>
             <img ng-src="{{object.fileLocation}}" width="320" height="320" alt="">
           </div> -->

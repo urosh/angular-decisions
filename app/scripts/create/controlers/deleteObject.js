@@ -6,10 +6,10 @@
     .controller('deleteObject', deleteObject);
 
   /* @ngInject */
-  function deleteObject($scope, decisionFactory, dialogMessages, locals, appStates) {
+  function deleteObject($scope, decisionFactory, dialogMessages, id, appStates) {
     
     var treeItem = appStates.getCurrentTreeItem();
-    $scope.object = decisionFactory.getObject(locals);
+    $scope.object = decisionFactory.getObject(id);
     
     $scope.cancel = function(){
       dialogMessages.modalReverse();
@@ -19,7 +19,7 @@
       if(type === 'yes') {
         
         // this needs to be fixed. Basically i need to delete this object from decision data. 
-        decisionFactory.deleteObject(locals, treeItem);
+        decisionFactory.deleteObject(id, treeItem);
 
         //decisionFactory.removeFromActiveObjects($scope.object);
       }

@@ -1,23 +1,30 @@
-<md-dialog class="edit-node-form" padding aria-label="Edit a node">
+<md-dialog class="editNodeForm" padding aria-label="Edit a node">
   <md-toolbar>
     <div class="md-toolbar-tools">
-      <h2>Edit a node</h2>
+      <h2 ng-click="test()">Edit a node</h2>
       <span flex></span>
       <md-button class="md-icon-button" aria-label="close" ng-click="close()">
         <i class="mdi mdi-close dialog-close"  ></i>
       </md-button>
     </div>
   </md-toolbar>
-  <md-content layout-padding>
-    <p>Ok we will edit node now</p>
-    <div id="ng-app"  ng-controller="demoController" >
-      <div class="container border-around">
-          <div text-angular 
-                ng-model="htmlContent" 
-                name="demo-editor" 
-                ta-html-editor-class="border-around">
-          </div>
-      </div>
+  <md-content >
+    <div class="editNodeMenu">
+      
+      <ul>
+        <li><span ng-class="{'active': activeBlockType === 'ADD_TEXT'}"><i class="mdi mdi-format-text"  ng-click="addBlock('ADD_TEXT')"></i></span></li>
+        <li><span ng-class="{'active': activeBlockType === 'ADD_TITLE'}"><i class="mdi mdi-format-header-1" ng-click="addBlock('ADD_TITLE')"></i></span></li>
+        <li><span ng-class="{'active': activeBlockType === 'ADD_OBJECTS'}"><i class="mdi mdi-file-image" ng-click="addBlock('ADD_OBJECTS')"></i></span></li>
+        <li><span ng-class="{'active': activeBlockType === 'ADD_LINK'}"><i class="mdi mdi-link-variant" ng-click="addBlock('ADD_LINK')"></i></span></li>
+        <li><span ng-class="{'active': activeBlockType === 'ADD_VIDEO'}"><i class="mdi mdi-youtube-play" ng-click="addBlock('ADD_VIDEO')"></i></span></li>
+      </ul>
     </div>
+    
+    <div class="blocksDiv">
+      <story-block item="block" ng-repeat="block in storyBlocks" ></story-block>
+    </div>
+    <div id="objectList" ng-show="activeBlockType === 'ADD_OBJECTS'" >
+      <story-objects-list type="type" id="id" item="item" ></story-objects-list>
+    </div>  
   </md-content>
 </md-dialog>

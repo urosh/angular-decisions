@@ -10,7 +10,7 @@
   </md-toolbar>
   <md-content layout-padding>
     <form novalidate name="documentForm">
-      <div layout layout-sm="column">
+      <div layout class="inputDiv" layout-sm="column">
         <md-input-container flex>
           <label>Title</label>
           <input required name="title" ng-model="document.title">
@@ -19,20 +19,21 @@
           </div>
         </md-input-container>
       </div>
-      <div layout layout-sm="column">
+      <div layout class="inputDiv" layout-sm="column">
         <md-input-container flex>
           <label>Tags</label>
           <input ng-model="document.tags">
         </md-input-container>
       
       </div>
-      
-      <md-input-container flex>
-        <label>Short description</label>
-        <textarea ng-model="document.text" columns="5" ></textarea>
-      </md-input-container>
+      <div layout class="inputDiv" layout-sm="column">
+        <md-input-container flex>
+          <label>Short description</label>
+          <textarea ng-model="document.text"  ></textarea>
+        </md-input-container>
+      </div>
       <md-button class="md-raised md-primary" ng-click="addNewDocument();">Submit</md-button>
     </form>
-
+   
   </md-content>
 </md-dialog>

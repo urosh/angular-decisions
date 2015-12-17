@@ -21,7 +21,10 @@
 	    deleteAnnotation: deleteAnnotation,
 	    getAnnotationList: getAnnotationList,
 	    getObjectDescription: getObjectDescription,
-	    deleteObject: deleteObject 
+	    deleteObject: deleteObject,
+	    saveTreeItemStory: saveTreeItemStory,
+	    getTreeItemStories: getTreeItemStories
+	    
 	  };
 	  
 	  var ref = new Firebase("https://starc-decisions.firebaseio.com");
@@ -78,6 +81,7 @@
 			this.description = new Description(title, tags, text);
 			this.id = id || ''; // text
 			this.content = []; // array of object id's
+			this.story = [];
 		}
 
 
@@ -111,6 +115,7 @@
 			this.content = []; // array of object id's
 			this.source = connection.source || '';
 			this.target = connection.target || '';
+			this.story = [];
 		}
 
 		Connection.prototype.addItem = function(obj){
@@ -287,8 +292,6 @@
 	  		'objectType': currentObject.type,
 	  		'coordinates': annotation.coordinates
 	  	};
-	  	console.log(new Description());
-	  	console.log(doc);
 	  	return id;
 
 	  	
@@ -322,6 +325,36 @@
 	  	var item = doc.content[id];
 	  	return item.description;
 	  }
+
+	  function saveTreeItemStory(data) {
+	  	doc[data.type][data.id].story = [];
+	  	data.content.forEach(function(block) {
+	  		var blockDescription = {
+	  			mode: block.mode,
+	  			data: ''
+	  		}
+	  		if(block.mode === 'ADD_OBJECTS'){
+	  			var dataArr = [];
+	  			block.data.forEach(function(item) {
+	  				dataArr.push(item.id);
+	  			});
+	  			blockDescription.data = dataArr;	
+	  		}else{
+	  			blockDescription.data = block.data;
+	  		}
+	  		doc[data.type][data.id].story.push({
+	  			mode: blockDescription.mode, 
+	  			data: blockDescription.data
+	  		});
+	  	});
+	  	console.log(doc);
+	  }
+
+	  function getTreeItemStories(treeItem) {
+	  	return _.cloneDeep(doc[treeItem.type][treeItem.id].story);
+	  }
+
+
 
 
 		return service;
