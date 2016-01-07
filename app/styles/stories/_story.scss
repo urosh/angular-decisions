@@ -1,0 +1,127 @@
+.story{
+  width: 750px;
+  min-height: 450px;
+
+  md-content{
+    padding: 5px;
+  }
+
+  .activeBlock{
+    border: dashed 1px #a2a2a2;
+  }
+  .story-menu{
+    margin-bottom: 10px;
+    ul{
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+    }
+
+    li{
+      display: inline;
+    }
+
+    span{
+      width: 32px;
+      height: 32px;
+      text-align: center;
+      background: #c2c2c2;
+      display: inline-block;
+      font-size: 22px;
+      line-height: 32px;
+    }
+    span.active{
+      background: #f1f1f1;
+    }
+  }
+
+
+  .story-blocks{
+    margin: 5px 0;
+    overflow: auto;
+    div:first-child{
+      padding: 2px;
+    }
+    //border: solid 1px red;
+    md-whiteframe{
+      background: #fff;
+      border: solid 1px red;
+    }
+
+    md-card-title{
+      padding: 12px 8px 8px;
+    }
+
+    md-card-content{
+      padding: 8px;
+      padding-top: 0;
+    }
+
+    .md-icon-button{
+      padding: 0;
+      width: 36px;
+      height: 36px;
+      line-height: 24px;
+      vertical-align: middle;
+    }
+    md-card-actions{
+      margin: 0px;
+      .mdi{
+        font-size: 24px;
+        line-height: 24px;
+      }
+    }
+    .md-headline{
+      font-size: 22px;
+      line-height: 30px;
+    }
+    .md-subhead {
+      padding-top: 6px;
+    }
+
+    
+    textarea{
+      rows: 120;
+      outline: none;
+      resize: none;
+      overflow: hidden;
+      width: 730px;
+      height: 350px;
+      font-family: 'Arvo', serif;
+    }
+    h2{
+      margin: 0;
+    }
+    input[type="text"] {
+      width: 730px;
+      font-size: 16px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 18px;
+      font-family: 'Arvo', serif;
+    }
+  }
+}
+
+// Object List 
+.objects-list{
+  img{
+    height: 80px;
+  }
+  p:first-child{
+    margin: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: lowercase;
+  }
+  .md-subheader-inner{
+    margin: 2px;
+    padding: 0;
+  }
+  .objectContainer{
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    background: #c2c2c2;
+    padding: 3px;
+  }
+}
