@@ -1,0 +1,40 @@
+.create-decisions-container{
+  margin-top: 20px;
+  .mdi{
+    margin-right: 10px;
+    font-size: 34px;
+  }
+  md-card{
+    margin: 0;
+    padding: 0;
+    background: $grey1;
+  }
+  .menu{
+    margin-bottom: 10px;
+    padding: 0 5px;
+    md-card{
+      height: 500px;
+    }
+    .tree-menu-item{
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .messages{
+    padding: 0 5px;
+    md-card{
+      height: 250px;
+    }
+  }
+
+  .tree{
+    padding: 0 5px;
+    md-card{
+      min-height: 750px;
+      @import "tree/decisionTree"; 
+    }
+
+  }
+}
+

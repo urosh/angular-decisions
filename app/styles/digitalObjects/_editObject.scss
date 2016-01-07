@@ -1,0 +1,79 @@
+.edit-object{
+  width: 700px;
+  max-height: 670px;
+  height: 100%;
+  md-content{
+    padding: 5px;
+  }
+  .container{
+    clear: both;
+    overflow: auto;
+  }
+  .object-div{
+    width: 325px;
+    overflow: auto;
+    float: left;
+    background-color: #3F51B5;
+    color: #e2e2e2;
+    p:first-child{
+      margin: 5px;
+      text-align: center;
+    }
+    @import 'threeDeeRenderer';
+  }
+  .metadataDiv{
+    width: 360px;
+    float: right;
+    md-input-container{
+      width: 355px;
+    }
+  }
+
+  .details{
+    span{
+      font-weight: bold;
+    }
+  }
+  
+  .chipDiv{
+    margin-bottom: 20px;
+    span{
+      display: inline-block;
+      height: 26px;
+      border-radius: 16px;
+      background: #e2e2e2;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 26px;
+      padding: 0 10px;
+      color: #424242;
+      margin-top: 5px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+    .act{
+      background: #3F51B5;
+      color: #e2e2e2;
+    }
+  }
+    
+  .saveButton{
+    margin: 10px 0;
+  }
+    
+  .add-annotation{
+    text-align: center;
+    width: 320px;
+    vertical-align: middle;
+    padding: 5px 0;
+    .mdi{
+      font-size: 26px;
+      vertical-align: middle;
+    }
+    span{
+      font-size: 14px;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+  }
+}

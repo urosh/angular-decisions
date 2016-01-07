@@ -1,0 +1,65 @@
+<md-dialog flow-init class="edit-object" padding aria-label="Edit a node">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Edit object</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" aria-label="close" ng-click="close()">
+        <i class="mdi mdi-close dialog-close"  ></i>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <div class="container">
+      <!-- Here we display our object -->
+      <div class="object-div">
+        <p>{{object.fileName}}</p>
+        <!-- Based on the object type it will show either image or 3D -->
+        <image-cropper 
+          ng-show="objectType === 'image'" 
+          mode="'edit'" 
+          object="objectType" 
+          image="object.fileLocation" 
+          setannotation="setAnnotation(annotation)">
+        </image-cropper>
+        <three-dee-renderer
+          ng-show="objectType === '3d'"  
+          object="objectType" 
+          docid="object.id"
+          mode="'edit'" 
+          setannotation="setAnnotation(annotation)">
+        </three-dee-renderer>
+        <!-- Button for adding annotations -->
+        <div class="add-annotation">
+          <i class="mdi mdi-plus" ng-click="addAnnotation()" ></i> <span ng-click="addAnnotation()">Add annotation</span>
+        </div>
+      </div>
+
+      <div class="metadataDiv">
+        <div class="chipDiv">
+          <span ng-click="showDescription()" class="{{activeTabIndicator[0]}}">Image description</span>
+          <span ng-repeat="annotation in annotations" ng-click="showAnnotation($index)" class="{{activeTabIndicator[1 + $index]}}">
+            {{annotation.description.title}}
+            <i ng-click="removeAnnotation($index)" class="mdi mdi-close"></i>
+          </span>
+        </div>
+        <md-input-container>
+          <label>Title</label>
+          <input  ng-model="currentDescription.title">
+        </md-input-container>
+        <md-input-container>
+          <label>Tags</label>
+          <input  ng-model="currentDescription.tags" >
+        </md-input-container>
+        <md-input-container flex>
+          <label>Description</label>
+          <textarea ng-model="currentDescription.text" columns="1" ></textarea>
+        </md-input-container>
+        <md-button class="md-raised md-primary saveButton" ng-click="save()">Save description</md-button> 
+      </div>
+      
+    </div>
+
+   
+    
+  </md-content>
+</md-dialog>

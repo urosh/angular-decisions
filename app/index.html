@@ -91,44 +91,59 @@
         
         <!-- Tree.js files -->
         <script src="http://threejs.org/build/three.min.js"></script>
-        <script src="scripts/create/OBJLoader.js"></script>
+        <script src="scripts/digitalObjects/utilities/OBJLoader.js"></script>
 
         <script src="http://threejs.org/examples/js/Detector.js"></script>
         <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
         <script src="http://threejs.org/examples/js/controls/TrackballControls.js"></script>
         <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
         <script src="http://threejs.org/examples/js/renderers/Projector.js"></script>
-
+        
+        <!-- Services -->
+        
+        <script src="scripts/services/servicesModule.js"></script>
+        <script src="scripts/services/communicationChannel.js"></script>
+        <script src="scripts/services/dialogService.js"></script>
+        <script src="scripts/services/decisionsDataService.js"></script>
+        <script src="scripts/services/treeActionsService.js"></script>
+        
         <!-- Create decision trees -->
         <script src="https://www.youtube.com/iframe_api"></script>
-        <script src="scripts/create/youtube-embed.js"></script>
-        <script src="scripts/create/createModule.js"></script>
-        <script src="scripts/create/directives/decisionTree.js"></script>
-        <script src="scripts/create/directives/createDecisions.js"></script>
-        <script src="scripts/create/directives/messages.js"></script>
-        <script src="scripts/create/directives/threeDeeRenderer.js"></script>
-        <script src="scripts/create/directives/imageCropper.js"></script>
-        <script src="scripts/create/directives/storyAddText.js"></script>
-        <script src="scripts/create/directives/storyAddTitle.js"></script>
-        <script src="scripts/create/directives/storyAddLink.js"></script>
-        <script src="scripts/create/directives/storyAddVideo.js"></script>
-        <script src="scripts/create/directives/storyAddObjects.js"></script>
-        <script src="scripts/create/directives/storyObjectsList.js"></script>
-        <script src="scripts/create/directives/storyBlock.js"></script>
-        <script src="scripts/create/services/messages.js"></script>
-        <script src="scripts/create/services/dialogMessages.js"></script>
-        <script src="scripts/create/services/decisionsData.js"></script>
-        <script src="scripts/create/services/userActions.js"></script>
-        <script src="scripts/create/services/states.js"></script>
-        <script src="scripts/create/services/storyMessages.js"></script>
-        <script src="scripts/create/services/storyService.js"></script>
-        <script src="scripts/create/controlers/editObject.js"></script>
-        <script src="scripts/create/controlers/newDocument.js"></script>
-        <script src="scripts/create/controlers/addData.js"></script>
-        <script src="scripts/create/controlers/deleteObject.js"></script>
-        <script src="scripts/create/controlers/deleteNode.js"></script>
-        <script src="scripts/create/controlers/editNode.js"></script>
-        <script src="scripts/create/controlers/objectDetails.js"></script>
+        <script src="scripts/stories/youtube-embed.js"></script>
+        <script src="scripts/tree/treeModule.js"></script>
+        <script src="scripts/tree/decisionTreeDirective.js"></script>
+        <script src="scripts/tree/createDecisionsDirective.js"></script>
+        <script src="scripts/tree/treeStatesService.js"></script>
+        <script src="scripts/tree/deleteTreeItemController.js"></script>
+        <script src="scripts/tree/newDocumentController.js"></script>
+        
+        <script src="scripts/tree/treeStatesService.js"></script>
+        
+        <!-- Digital objects modules -->
+        <script src="scripts/digitalObjects/digitalObjectsModule.js"></script>
+        <script src="scripts/digitalObjects/utilities/threeDeeRendererDirective.js"></script>
+        <script src="scripts/digitalObjects/utilities/imageCropperDirective.js"></script>
+        <script src="scripts/digitalObjects/addDataController.js"></script>
+        <script src="scripts/digitalObjects/deleteObjectController.js"></script>
+        <script src="scripts/digitalObjects/editObjectController.js"></script>
+        <script src="scripts/digitalObjects/objectDetailsController.js"></script>
+        
+        <!-- Stories modules -->
+        <script src="scripts/stories/storyModule.js"></script>
+        <script src="scripts/stories/addStoryController.js"></script>
+        <script src="scripts/stories/storyAddTextDirective.js"></script>
+        <script src="scripts/stories/storyAddTitleDirective.js"></script>
+        <script src="scripts/stories/storyAddLinkDirective.js"></script>
+        <script src="scripts/stories/storyAddVideoDirective.js"></script>
+        <script src="scripts/stories/storyAddObjectsDirective.js"></script>
+        <script src="scripts/stories/storyObjectsListDirective.js"></script>
+        <script src="scripts/stories/storyBlockDirective.js"></script>
+        <script src="scripts/stories/storyMessageChannel.js"></script>
+        <script src="scripts/stories/storyService.js"></script>
+
+        
+        
+       
         
         <script src="scripts/app.js"></script>
         <!-- endbuild -->

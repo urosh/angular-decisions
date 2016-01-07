@@ -3,7 +3,10 @@
 	angular.module('starcDecisions', [
 			'ui.router',
 			'ngMaterial',
-			'app.buildDecisions',
+			'app.stories',
+			'app.services',
+			'app.treeModule',
+			'app.digitalObjects',
 			'ngMessages',
 			'firebase'
 		]);
